@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <>
       <nav>
-       <ul className=' flex justify-between my-5 mx-20 items-center' > 
+       <ul className=' flex justify-between my-5 mx-20 items-center font-poppins' > 
        <Logo/>
         
           <div className='navDiv__2 flex  gap-x-10 text-[#535353

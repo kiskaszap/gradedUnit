@@ -19,11 +19,11 @@ const Testimonials = () => {
             </div>
           </div>
           <div className='header__sub2--content   opacity-100 absolute top-0 left-0 flex flex-col h-full w-full justify-center items-center gap-5'>
-            <h3 className=' opacity-100 z-50 text-3xl text-[#0FCE7E]'>Testimonials</h3>
-            <h2 className=' opacity-100 z-50 text-5xl text-white'>What our community say`s?</h2>
+            <h3 className=' opacity-100 z-50 text-3xl text-[#0FCE7E] font-poppins'>Testimonials</h3>
+            <h2 className=' opacity-100 z-50 text-5xl text-white font-anton'>What our community say`s?</h2>
             <div className=' opacity-100 z-50 flex px-9 gap-4 '>
               <ImQuotesLeft className=' opacity-100 z-50 text-9xl h-full text-[#0FCE7E]   pb-40 '/>
-              <p className=' opacity-100 z-50 text-lg text-white'>As a parent, I highly recommend the Cub Scouts program. My son has grown in confidence and learned valuable life skills such as leadership and teamwork, all while having fun in a supportive environment. The Cub Scouts have given him a sense of community and belonging that I am grateful for.</p>
+              <p className=' opacity-100 z-50 text-lg text-white font-poppins'>As a parent, I highly recommend the Cub Scouts program. My son has grown in confidence and learned valuable life skills such as leadership and teamwork, all while having fun in a supportive environment. The Cub Scouts have given him a sense of community and belonging that I am grateful for.</p>
               <ImQuotesRight className=' opacity-100 z-50  text-9xl h-full text-[#0FCE7E] pt-4'/>
             </div>
 

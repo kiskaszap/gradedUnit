@@ -17,12 +17,12 @@ const Footer = () => {
     <footer className=' mt-20'>
           <div className='footer_sub w-full h-20 bg-[#0FCE7E] flex'>
             <div className=' w-full h-full flex justify-between items-center px-20'>
-              <p className='text-white text-xl  font-bold'>
+              <p className='text-white text-xl  font-bold font-anton'>
                 Are you ready to join our journey?
               </p>
               <button className='  bg-[#fff] px-5  rounded-lg flex items-center  transition-all duration-1000 h-10 hover:bg-green-600 hover:scale-110 font-semibold'>
                 <Link
-                  className='flex gap-4 items-center'
+                  className='flex gap-4 items-center font-poppins'
                   to='/register'
                 >
                   Join Scouts <HiArrowLongRight className='w-6 h-auto' />
@@ -33,7 +33,7 @@ const Footer = () => {
           <div className='footerMenu bg-black w-full h-96 relative flex justify-center items-center '>
             <div className='opacity-100  flex-1 ml-12 '>
               <Logo2 className='z-50 ' />
-              <p className='text-[#D9DBE1]'>
+              <p className='text-[#D9DBE1] font-poppins'>
                 A place where young people learn valuable life skills, build
                 lifelong friendships, and make a positive impact on their
                 communities through outdoor adventures and service projects.
@@ -67,27 +67,27 @@ const Footer = () => {
               </div>
             </div>
             <div className=' opacity-100 z-50 flex flex-col flex-1 gap-3  ml-16 '>
-              <h1 className='text-white'>Quick Links</h1>
+              <h1 className='text-white font-anton'>Quick Links</h1>
               <Link
-                className='text-[#D9DBE1] hover:text-white z-50 cursor-pointer'
+                className='text-[#D9DBE1] hover:text-white z-50 cursor-pointer font-poppins'
                 to='/register'
               >
                 Join scouts
               </Link>
               <Link
-                className='text-[#D9DBE1] hover:text-white z-50 cursor-pointer'
+                className='text-[#D9DBE1] hover:text-white z-50 cursor-pointer font-poppins'
                 to='/activities'
               >
                 Activities
               </Link>
               <Link
-                className='text-[#D9DBE1] hover:text-white z-50 cursor-pointer'
+                className='text-[#D9DBE1] hover:text-white z-50 cursor-pointer font-poppins'
                 to='/badges'
               >
                 Badges
               </Link>
               <Link
-                className='text-[#D9DBE1] hover:text-white z-50 cursor-pointer'
+                className='text-[#D9DBE1] hover:text-white z-50 cursor-pointer font-poppins'
                 to='/contact-us'
               >
                 Contact us
@@ -95,16 +95,16 @@ const Footer = () => {
             </div>
 
             <div className=' opacity-100 z-50 flex flex-col flex-1 gap-5'>
-              <h1 className='text-white'>Get in touch</h1>
-              <p className='text-[#D9DBE1] flex'>
-                <FaMobileAlt className=' w-6 h-6 text-[#0FCE7E] cursor-pointer z-50' />{' '}
+              <h1 className='text-white font-anton'>Get in touch</h1>
+              <p className='text-[#D9DBE1] flex font-poppins'>
+                <FaMobileAlt className=' w-6 h-6 text-[#0FCE7E] cursor-pointer z-50 ' />{' '}
                 01896 358 269
               </p>
-              <p className='text-[#D9DBE1] flex'>
+              <p className='text-[#D9DBE1] flex font-poppins'>
                 <MdEmail className=' w-6 h-6 text-[#0FCE7E] cursor-pointer z-50' />
                 obanscouts@goscouts.com
               </p>
-              <p className='text-[#D9DBE1] flex'>
+              <p className='text-[#D9DBE1] flex font-poppins'>
                 <FiMapPin className=' w-6 h-6   cursor-pointer z-50 text-[#0FCE7E] ' />
                 123 Main St. Oban PA34 3AB
               </p>
