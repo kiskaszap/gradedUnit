@@ -33,20 +33,20 @@ const Home = () => {
       <div>
         <header className=' h-[calc(100vh-4.5rem)] relative'>
           <div
-            className='header__sub1  h-full bg-cover bg-center relative'
+            className='header__sub1  h-full w-full bg-cover bg-center relative'
             style={{ backgroundImage: `url(${HomeHeader})` }}
           >
             <div className='header__sub2 bg-black  h-full w-full opacity-60 absolute top-0 left-0 overflow-hidden'>
               <div
-                className='header__sub3 absolute  top-52 left-0 h-full w-full bg-center bg-no-repeat '
+                className='header__sub3 absolute w-screen  top-52 left-0 h-full  bg-center bg-no-repeat '
                 style={{ backgroundImage: `url(${HomeHeaderBottom})` }}
               ></div>
             </div>
           </div>
 
-          <div className='header__sub2--content text-white  opacity-100 absolute top-0 left-0 flex h-full  items-center  pl-[5rem] w-1/2'>
+          <div className='header__sub2--content text-white  opacity-100 absolute top-0 left-0 flex h-full  items-center  pl-[1rem] md:pl-[5rem] w-full md:w-1/2 '>
             
-            <div className=''>
+            <div className=' flex flex-col'>
               <h2 className='z-50 text-3xl  font-poppins'>Welcome to</h2>
               <h1 className='text-[3rem] font-extrabold  font-anton'>
                 Obanshire Cub Scouts
@@ -64,7 +64,7 @@ const Home = () => {
         </header>
         <main className='mx-20 my-40  '>
           <OurStory/>
-          <div className='homeActivities flex flex-col h-80 mt-24 gap-20 '>
+          <div className='homeActivities flex flex-col  mt-24 gap-20 '>
             <div className='homeOurStory--description   flex  justify-center flex-col h-full '>
               <h2 className='text-[#0FCE7E] text-lg font-semibold  font-poppins'>
                 Activities
@@ -82,7 +82,7 @@ const Home = () => {
           <h4 className='text-[#303030] text-[1.8rem] font-extrabold mb-20 font-anton'>
             Meet our scout leaders
           </h4>
-          <div className='teamSectionPerson flex h-72 w-full gap-5'>
+          <div className='teamSectionPerson grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  h-auto  w-full gap-5'>
             
             {leaders.map((item)=>{
               return <Leader name={item.name} pic={item.pic} picPosition={item.picPosition} role={item.role}/>

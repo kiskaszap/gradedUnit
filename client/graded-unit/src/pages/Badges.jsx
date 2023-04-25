@@ -7,6 +7,7 @@ import Input from '../components/Input'
 
 import { useContext } from 'react'
 import { AppContext} from '../components/AppWrapper'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -14,6 +15,7 @@ import { AppContext} from '../components/AppWrapper'
 const Badges = () => {
    
 const { badges, setBadges, searchValue,setSearchValue } = useContext(AppContext);
+const navigate = useNavigate();
 
 
  
@@ -47,7 +49,7 @@ const { badges, setBadges, searchValue,setSearchValue } = useContext(AppContext)
         </div>
       </header>
       <Input name='Search' label='text' id='search' placeholder='Search ' searchValue={setSearchValue} setBadges={setBadges}/>
-      <div className='container grid grid-cols-4 gap-2 mx-auto  '>
+      <div className='container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mx-auto  '>
         { allBadges
       .filter((badge) =>
         badge.name.toLowerCase().includes(searchValue.toLowerCase())
@@ -55,7 +57,10 @@ const { badges, setBadges, searchValue,setSearchValue } = useContext(AppContext)
       .map((items) => {
         return (
           <div className="justify-center items-center flex flex-col cursor-pointer" key={items.name} onClick={(e)=>{
-          console.log(e.currentTarget.children[1].innerHTML);
+            const singleBadge=e.currentTarget.children[1].innerHTML
+            navigate(`/badges/${singleBadge}`);
+            
+          
           }}>
             <img className="w-24 h-24 justify-center items-center" src={items.src} alt="" />
             <p className="text-center">{items.name}</p>

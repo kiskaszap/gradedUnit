@@ -4,8 +4,8 @@ import Scouthelp from '../assets/scout help.jpg'
 
 const OurStory = () => {
   return (
-    <div className='homeOurStory flex h-80 mt-24 gap-20 '>
-            <div className='homeOurStory--description  flex-1 flex  justify-center flex-col h-full '>
+    <div className='homeOurStory grid grid-cols-1 md:grid-cols-2  mt-24 gap-20 '>
+            <div className='homeOurStory--description   flex  justify-center flex-col h-full '>
               <h2 className='text-[#0FCE7E] text-lg font-semibold font-poppins'>
                 Our Story
               </h2>
