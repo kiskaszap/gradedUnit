@@ -10,13 +10,16 @@ import Gallery2 from '../assets/gallery2.jpg'
 import Gallery3 from '../assets/gallery3.jpg'
 import Gallery4 from '../assets/gallery4.jpg'
 
+//components
+import Footer from '../components/Footer';
+import OurStory from '../components/OurStory';
+
 
 //react icons
 
 import { MdOutlineGroups2 } from 'react-icons/md';
 import { BsRocketTakeoff } from 'react-icons/bs';
 import { AiOutlineLineChart } from 'react-icons/ai';
-import Footer from '../components/Footer';
 
 const Aboutus = () => {
   return (
@@ -28,7 +31,7 @@ const Aboutus = () => {
         >
           <div className='header__sub2 bg-black  h-full w-full opacity-60 absolute top-0 left-0 overflow-hidden'>
             <div
-              className='header__sub3 absolute  -bottom-10 left-0 h-full w-full bg-center bg-no-repeat opacity-80 '
+              className='header__sub3 absolute  -bottom-10 left-0 h-full w-full top-60 xl:bg-cover bg-center bg-no-repeat opacity-80 '
               style={{ backgroundImage: `url(${HomeHeaderBottom})` }}
             ></div>
           </div>
@@ -44,31 +47,10 @@ const Aboutus = () => {
         </div>
       </header>
       <main className='mx-20 my-40'>
-        <div className='homeOurStory flex h-80 mt-24 gap-20 '>
-          <div className='homeOurStory--description  flex-1 flex  justify-center flex-col h-full '>
-            <h2 className='text-[#0FCE7E] text-lg font-semibold font-poppins'>Our Story</h2>
-            <h1 className='text-[#303030] text-[1.8rem] font-extrabold font-anton'>
-              We help people to make their life better
-            </h1>
-            <p className=' font-poppins'>
-              Our Cub Scouts are committed to making a difference in our
-              communities. From volunteering at local food banks to organizing
-              charity fundraisers, we're dedicated to helping those in need.
-              Join us on our mission to make the world a better place, one good
-              deed at a time.
-            </p>
-          </div>
-          <div className='homeOurStory--picture flex-1 flex h-full  items-center '>
-            <img
-              className='rounded-xl'
-              src={Scouthelp}
-              alt='help'
-            />
-          </div>
-        </div>
+        <OurStory/>
 
         <section className='aboutUs__info mt-40 w-full '>
-          <div className='flex gap-10'>
+          <div className='grid grid-cols-1 xl:grid-cols-3 gap-10'>
             <div className='flex-1 flex flex-col'>
               <MdOutlineGroups2 className=' w-20  h-20 text-[#0FCE7E]' />
               <div className=' border-l-4 border-[#0FCE7E] pl-2'>

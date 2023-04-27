@@ -21,6 +21,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route
+          key={'home'}
           path='/'
           element={<Layout />}
         >

@@ -31,7 +31,7 @@ const navigate = useNavigate();
           <div className='header__sub2 bg-black  h-full w-full opacity-60 absolute top-0 left-0 overflow-hidden'>
             
             <div
-              className='header__sub3 absolute  -bottom-10 left-0 h-full w-full bg-center bg-no-repeat opacity-80 '
+              className='header__sub3 absolute  -bottom-10 left-0 h-full top-60 xl:bg-cover w-full bg-center bg-no-repeat opacity-80 '
               
               style={{ backgroundImage: `url(${HomeHeaderBottom})` }}
             ></div>

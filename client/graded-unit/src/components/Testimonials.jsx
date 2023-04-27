@@ -6,7 +6,7 @@ import HomeHeaderBottom from '../assets/homeHeaderBottom.png';
 
 const Testimonials = () => {
   return (
-    <section className=' h-screen w-full   mt-96 relative'>
+    <section className=' h-screen w-full  relative'>
           <div
             className='header__sub1  h-full bg-cover bg-center relative'
             style={{ backgroundImage: `url(${Testimonial})` }}
@@ -22,9 +22,9 @@ const Testimonials = () => {
             <h3 className=' opacity-100 z-50 text-3xl text-[#0FCE7E] font-poppins text-center'>Testimonials</h3>
             <h2 className=' opacity-100 z-50 text-5xl text-white font-anton text-center'>What our community say`s?</h2>
             <div className=' opacity-100 z-50 flex px-9 gap-4 '>
-              <ImQuotesLeft className=' opacity-100 z-50 text-9xl h-full text-[#0FCE7E]   pb-40 '/>
-              <p className=' opacity-100 z-50 text-lg text-white font-poppins'>As a parent, I highly recommend the Cub Scouts program. My son has grown in confidence and learned valuable life skills such as leadership and teamwork, all while having fun in a supportive environment. The Cub Scouts have given him a sense of community and belonging that I am grateful for.</p>
-              <ImQuotesRight className=' opacity-100 z-50  text-9xl h-full text-[#0FCE7E] pt-4'/>
+              
+              <p className=' opacity-100 z-50 text-lg text-white font-poppins text-center'><span className=' inline-block'> <ImQuotesLeft className=' opacity-100 z-50 text-3xl  text-[#0FCE7E] '/></span> As a parent, I highly recommend the Cub Scouts program. My son has grown in confidence and learned valuable life skills such as leadership and teamwork, all while having fun in a supportive environment. The Cub Scouts have given him a sense of community and belonging that I am grateful for. <span className=' inline-block'> <ImQuotesRight className=' opacity-100 z-50 text-3xl  text-[#0FCE7E] '/></span></p>
+              
             </div>
 
           </div>

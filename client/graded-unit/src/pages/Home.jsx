@@ -38,7 +38,7 @@ const Home = () => {
           >
             <div className='header__sub2 bg-black  h-full w-full opacity-60 absolute top-0 left-0 overflow-hidden'>
               <div
-                className='header__sub3 absolute w-screen  top-52 left-0 h-full  bg-center bg-no-repeat '
+                className='header__sub3 absolute w-screen  top-96 left-0 h-full xl:bg-cover  bg-center bg-no-repeat '
                 style={{ backgroundImage: `url(${HomeHeaderBottom})` }}
               ></div>
             </div>
@@ -85,7 +85,7 @@ const Home = () => {
           <div className='teamSectionPerson grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  h-auto  w-full gap-5'>
             
             {leaders.map((item)=>{
-              return <Leader name={item.name} pic={item.pic} picPosition={item.picPosition} role={item.role}/>
+              return <Leader key={item} name={item.name} pic={item.pic} picPosition={item.picPosition} role={item.role}/>
             })}
           </div>
         </section>

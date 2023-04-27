@@ -14,9 +14,9 @@ import { HiArrowLongRight } from 'react-icons/hi2';
 
 const Footer = () => {
   return (
-    <footer className=' mt-20'>
-          <div className='footer_sub w-full h-20 bg-[#0FCE7E] flex '>
-            <div className=' w-full h-full flex justify-between items-center px-20'>
+    <footer className='   '>
+          <div className='footer_sub w-full  h-20 px-5 bg-[#0FCE7E] flex '>
+            <div className=' w-full h-full flex justify-between items-center '>
               <p className='text-white text-xl  font-bold font-anton'>
                 Are you ready to join our journey?
               </p>
@@ -30,8 +30,8 @@ const Footer = () => {
               </button>
             </div>
           </div>
-          <div className='footerMenu bg-black w-full h-96 relative flex justify-center items-center flex-col md:flex-row '>
-            <div className='opacity-100  flex-1 ml-12 sm:text-center '>
+          <div className='footerMenu bg-black w-full pb-10 relative flex justify-center items-center flex-col md:flex-row '>
+            <div className='opacity-100  flex-1 sm:ml-12 pb-10 text-center  '>
               <Logo2 className='z-50 flex w-full justify-center items-center ' />
               <p className='text-[#D9DBE1] font-poppins'>
                 A place where young people learn valuable life skills, build
@@ -39,7 +39,7 @@ const Footer = () => {
                 communities through outdoor adventures and service projects.
                 Together, we strive to be prepared, curious, and kind.
               </p>
-              <div className='flex gap-3 w-full justify-center'>
+              <div className='flex gap-3 w-full justify-center pt-10'>
                 <a
                   className=' w-6 h-6 text-[#0FCE7E] cursor-pointer z-50 hover:text-[#27cbd1]'
                   href='https://twitter.com/ObanshireScouts'
@@ -66,9 +66,9 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-            <div className=' flex  w-full   justify-evenly md:flex-1 md:gap-7 pb-5'>
-            <div className=' opacity-100 z-50 flex flex-col  gap-3  md:ml-16 '>
-              <h1 className='text-white font-anton'>Quick Links</h1>
+            <div className=' flex  w-full   justify-evenly md:flex-1 md:gap-7  '>
+            <div className=' opacity-100 z-50 flex flex-col  gap-3  md:ml-16  '>
+              <h1 className='text-white font-anton hidden sm:block'>Quick Links</h1>
               <Link
                 className='text-[#D9DBE1] hover:text-white z-50 cursor-pointer font-poppins'
                 to='/register'
@@ -96,7 +96,7 @@ const Footer = () => {
             </div>
 
             <div className=' opacity-100 z-50 flex flex-col  gap-5'>
-              <h1 className='text-white font-anton '>Get in touch</h1>
+              <h1 className='text-white font-anton hidden sm:block'>Get in touch</h1>
               <p className='text-[#D9DBE1] flex font-poppins'>
                 <FaMobileAlt className=' w-6 h-6 text-[#0FCE7E] cursor-pointer z-50 ' />{' '}
                 01896 358 269

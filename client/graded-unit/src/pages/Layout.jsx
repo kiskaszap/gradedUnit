@@ -28,25 +28,25 @@ const Layout = () => {
           <div className='navDiv__2 flex  gap-x-10 text-[#535353
 ] max-sm:hidden max-md:hidden lg1077:hidden  md:hidden xl:flex  '>
           
-            <li className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
+            <li key={"home"} className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
               <Link to='/'>Home</Link>
             </li>
-            <li className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
+            <li key={'activities'} className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
               <Link to='/activities'>Activities</Link>
             </li>
-            <li className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
+            <li key={'badges'} className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
               <Link to='/badges'>Badges</Link>
             </li>
-            <li className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
+            <li key={'games'} className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
               <Link to='/games'>Games</Link>
             </li>
-            <li className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
+            <li key={'gallery'} className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
               <Link to='/gallery'>Gallery</Link>
             </li>
-            <li className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
+            <li key={'about'} className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
               <Link to='/about-us'>About</Link>
             </li>
-            <li className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
+            <li key={'contact'} className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
               <Link to='/contact-us'>Contact</Link>
             </li>
           </div>
