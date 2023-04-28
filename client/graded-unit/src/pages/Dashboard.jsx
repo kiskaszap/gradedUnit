@@ -6,7 +6,7 @@ import Upload from '../components/Upload'
 import Messages from '../components/Messages'
 
 
-import { useState } from 'react'
+
 import { useContext } from 'react'
 import { AppContext} from '../components/AppWrapper'
 
@@ -19,8 +19,8 @@ const Dashboard = () => {
  const {component } = useContext(AppContext);
 
   return (
-    <div className=' grid md:grid-cols-5'>
-     <div className='    col-span-2 bg-[#C3C3C3] inline-flex  flex-col rounded-md my-5 m-10'>
+    <div className=' grid  md:grid-cols-7 md:grid-rows-6'>
+     <div className='   md:col-span-3  md:row-span-2 bg-[#C3C3C3] inline-flex  flex-col rounded-md my-5 m-10'>
 
       <div className=' flex p-9 justify-center items-center gap-3'>
        <div className='    '>
@@ -43,7 +43,7 @@ const Dashboard = () => {
        </div>
       
      </div>
-     <div className=' row-span-3'>
+     <div className='  md:col-span-4 md:row-span-4  pr-5'>
      {component}
      </div>
     </div>
