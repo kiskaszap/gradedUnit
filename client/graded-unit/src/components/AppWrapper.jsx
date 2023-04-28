@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { allBadges } from '../data/badges';
+import Profile from './Profile';
 
 const AppContext = React.createContext();
 
@@ -12,12 +13,13 @@ const AppWrapper = ({children}) => {
   const toggleNav =()=>{
     setDropdownOpen(!dropdownOpen)
   }
+  const [component,setComponent]=useState(<Profile/>)
  
 
 
  
   return (
-    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav}}>
+    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent}}>
      {children}
     </AppContext.Provider>
   )

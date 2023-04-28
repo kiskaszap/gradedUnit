@@ -3,7 +3,6 @@ import { FaRegUserCircle } from 'react-icons/fa';
 import Logo from '../components/Logo';
 import {RxDropdownMenu} from 'react-icons/rx'
 import DropdownNav from '../components/DropdownNav';
-import { useState } from 'react';
 import { useContext } from 'react'
 import { AppContext} from '../components/AppWrapper'
 

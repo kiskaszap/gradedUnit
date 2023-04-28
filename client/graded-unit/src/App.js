@@ -6,8 +6,7 @@ import Activities from './pages/Activities';
 import Badges from './pages/Badges';
 import SingleBadges from './pages/SingleBadges';
 import Contact from './pages/Contact';
-import DashboardAdmin from './pages/DashboardAdmin';
-import DashboardParent from './pages/DashboardParent';
+import Dashboard from './pages/Dashboard';
 import Gallery from './pages/Gallery';
 import Layout from './pages/Layout';
 import Home from './pages/Home';
@@ -58,13 +57,10 @@ export default function App() {
             element={<SingleGamePage />}
           />
           <Route
-            path='dashboard-admin'
-            element={<DashboardAdmin />}
+            path='dashboard'
+            element={<Dashboard />}
           />
-          <Route
-            path='dashboard-parent'
-            element={<DashboardParent />}
-          />
+
           <Route
             path='gallery'
             element={<Gallery />}
