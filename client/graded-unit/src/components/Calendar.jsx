@@ -31,7 +31,7 @@ const Calendar = () => {
       }
       
     ];
-    const [data, setData] = useState(schedulerData);
+    const [data, setData] = useState([]);
   
   
 
@@ -41,6 +41,7 @@ const Calendar = () => {
     if (added) {
       const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
       updatedData = [...data, { id: startingAddedId, ...added }];
+      console.log(updatedData);
     }
     if (changed) {
       updatedData = data.map((appointment) =>
@@ -56,7 +57,7 @@ const Calendar = () => {
   return (
     <Paper>
       <Scheduler
-      data={schedulerData}
+      data={data}
       >
         <ViewState
           currentDate={currentDate}
