@@ -23,14 +23,7 @@ const Calendar = () => {
    const handleCurrentDateChange = (date) => {
      setCurrentDate(date);
     };
-    const schedulerData = [
-      {
-        startDate: '2023-05-15T09:45',
-        endDate: '2023-05-15T11:00',
-        title: 'Meeting',
-      }
-      
-    ];
+   
     const [data, setData] = useState([]);
   
   
