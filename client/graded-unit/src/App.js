@@ -14,7 +14,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Games from './pages/Games';
 import SingleGamePage from './pages/SingleGamePage';
-
+import AdminDashboard from './pages/AdminDashboard';
 export default function App() {
   return (
     <BrowserRouter>
@@ -59,6 +59,10 @@ export default function App() {
           <Route
             path='dashboard'
             element={<Dashboard />}
+          />
+          <Route
+            path='admindashboard'
+            element={<AdminDashboard />}
           />
 
           <Route
