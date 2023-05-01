@@ -7,10 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kiskaszap/gradedUnit/server.git"
-  },
+  
   "author": "Balint Kaszap-Nagy",
   "license": "ISC",
   "dependencies": {
