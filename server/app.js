@@ -1,1 +1,0 @@
-const segg = 5;
