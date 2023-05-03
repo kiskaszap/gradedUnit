@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const db = require('./mongodb.js');
 app.get('/', (req, res) => {
-  res.send('Hello, wld!');
+  res.send('Hello, world!');
 });
 
 app.listen(5000, () => {
