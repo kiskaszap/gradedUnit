@@ -1,24 +1,34 @@
-import React from 'react';
+
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 const Register = () => {
   const {
     register,
     handleSubmit,
     watch,
-    onSubmit,
+
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      email: '',
-      password: '',
-      'confirm-password': '',
-    },
-  });
+  } = useForm();
+  const submit = (data) => {
+    const {email,password}=data
+    const userReg={
+      email,
+      password
+    }
+    console.log(userReg);
+    axios
+      .post('http://localhost:5000/register', userReg )
+      .then((response) => {
+        console.log(response.data); // do something with the response
+      })
+      .catch((error) => {
+        console.error(error); // handle the error
+      });
+  };
+
   const validateConfirmPassword = (value) =>
     value === watch('password') || "Passwords don't match";
-  const password = watch('password');
-  const confirmPassword = watch('confirm-password');
 
   return (
     <>
@@ -30,9 +40,8 @@ const Register = () => {
                 Create and account
               </h1>
               <form
-                onSubmit={handleSubmit(onSubmit)}
+                onSubmit={handleSubmit(submit)}
                 className='space-y-4 md:space-y-6'
-                action='#'
               >
                 <div>
                   <label
@@ -57,10 +66,15 @@ const Register = () => {
                       },
                     })}
                   />
+                  {errors.email && (
+                    <p className='text-red-500 text-sm mt-1'>
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label
-                    for='password'
+                    htmlFor='password'
                     className='block mb-2 text-sm font-medium text-[#0FCE7E] dark:text-white font-anton'
                   >
                     Password
@@ -78,14 +92,19 @@ const Register = () => {
                       },
                     })}
                     className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-poppins ${
-                      errors.password ? 'border-red-500' : ''
+                      errors.password ? 'border-red-500 outline-none' : ''
                     }`}
                     required=''
                   />
+                  {errors.password && (
+                    <p className='text-red-500 text-sm mt-1'>
+                      {errors.password.message}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label
-                    for='confirm-password'
+                    htmlFor='confirm-password'
                     className='block mb-2 text-sm font-medium text-[#0FCE7E]  dark:text-white font-anton'
                   >
                     Confirm password
@@ -104,6 +123,11 @@ const Register = () => {
                     }`}
                     required=''
                   />
+                  {errors['confirm-password'] && (
+                    <span className='text-red-500 text-xs'>
+                      {errors['confirm-password'].message}
+                    </span>
+                  )}
                 </div>
 
                 <button
@@ -125,7 +149,6 @@ const Register = () => {
             </div>
           </div>
         </div>
-        {console.log(errors)}
       </section>
     </>
   );
