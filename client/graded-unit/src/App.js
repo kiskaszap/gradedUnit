@@ -15,12 +15,13 @@ import Register from './pages/Register';
 import Games from './pages/Games';
 import SingleGamePage from './pages/SingleGamePage';
 import AdminDashboard from './pages/AdminDashboard';
+import PrivateRoute from './components/PrivateRoute';
+
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route
-          key={'home'}
           path='/'
           element={<Layout />}
         >
@@ -57,12 +58,13 @@ export default function App() {
             element={<SingleGamePage />}
           />
           <Route
-            path='dashboard'
-            element={<Dashboard />}
+            path='/dashboard'
+            element={<PrivateRoute route={<Dashboard />} />}
           />
+
           <Route
-            path='admindashboard'
-            element={<AdminDashboard />}
+            path='/admindashboard'
+            element={<PrivateRoute route={<AdminDashboard />} />}
           />
 
           <Route

@@ -7,7 +7,7 @@ import { useContext } from 'react'
 import { AppContext} from '../components/AppWrapper'
 
 const Layout = () => {
-  const { dropdownOpen,toggleNav } = useContext(AppContext);
+  const { dropdownOpen,toggleNav, isLoggedIn, logOut } = useContext(AppContext);
   
   return (
     <>
@@ -49,12 +49,16 @@ const Layout = () => {
               <Link to='/contact-us'>Contact</Link>
             </li>
           </div>
-          <div className='navDiv__3  gap-x-3 hidden md:flex'>
-            <li className='flex  items-center gap-x-3'>
-             <FaRegUserCircle className='  text-[#0FCE7E]  w-6 h-6'/>
-              <Link className=' border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]' to='/login'>Login</Link>
+          <div className={` navDiv__3  gap-x-3 hidden md:flex`}>
+            <li onClick={logOut} className={` flex  items-center gap-x-3`}>
+             <FaRegUserCircle className=  {`${!isLoggedIn ? 'hidden': 'flex'} text-[#0FCE7E]  w-6 h-6`}/>
+              <Link className= {`${!isLoggedIn ? 'hidden': 'flex'} border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]`} to='/'>Logout</Link>
             </li>
-            <li className='border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]'>
+            <li className={` flex  items-center gap-x-3`}>
+             <FaRegUserCircle className=  {`${isLoggedIn ? 'hidden': 'flex'} text-[#0FCE7E]  w-6 h-6`}/>
+              <Link className= {`${isLoggedIn ? 'hidden': 'flex'} border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]`} to='/login'>Login</Link>
+            </li>
+            <li className={`${isLoggedIn ? 'hidden': 'flex'} border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]`}>
               <Link to='/register'>Register</Link>
             </li>
           </div>

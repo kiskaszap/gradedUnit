@@ -14,12 +14,21 @@ const AppWrapper = ({children}) => {
     setDropdownOpen(!dropdownOpen)
   }
   const [component,setComponent]=useState(<Profile/>)
+  const [isLoggedIn,setIsLoggedIn]=useState(false)
+  const [isAdmin,setIsAdmin]=useState(false)
+  const [isUser,setIsUser]=useState(false)
+
+  const logOut =()=>{
+    setIsUser(false)
+    setIsAdmin(false)
+    setIsLoggedIn(false)
+  }
  
 
 
  
   return (
-    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent}}>
+    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, isUser,setIsUser, logOut}}>
      {children}
     </AppContext.Provider>
   )

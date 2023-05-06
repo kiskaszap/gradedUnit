@@ -1,34 +1,61 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useContext } from 'react'
+import { AppContext} from '../components/AppWrapper'
+
+import { useNavigate } from 'react-router-dom';
+
+
+
+
 
 const Login = () => {
+  const navigate = useNavigate();
+  const {setIsAdmin, setIsUser, setIsLoggedIn } = useContext(AppContext)
     const [error, isError]=useState(false)
     const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const submit = (data) => {
+   const  submit =  (data) => {
+    
     const {email,password}=data
     const userLog={
       email,
       password
     }
-    console.log(userLog);
+    
     axios
       .post('http://localhost:5000/login', userLog )
       .then((response) => {
+        console.log(response);
         if(response.status===404){
             isError(true)
         }
+        if (response.data.admin === true && response.data.authenticated === true) {
+  setIsAdmin(true);
+  setIsLoggedIn(true)
+
+  navigate('/admindashboard');
+} else if (response.data.authenticated === true) {
+  setIsUser(true);
+  navigate('/dashboard');
+  setIsLoggedIn(true)
+} else {
+  console.log('failed');
+}
          // do something with the response
       })
       .catch((error) => {
         console.log(error);
         isError(true)
       });
+      
+      
   };
+   
   return (
     <>
     <section className="bg-gray-50 dark:bg-gray-900 h-[calc(100vh-4.5rem)] ">

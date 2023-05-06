@@ -1,6 +1,6 @@
 import React from 'react'
 import { useContext } from 'react'
-import { AppContext} from '../components/AppWrapper'
+import { AppContext} from './AppWrapper'
 
 const DashboardButton = (props) => {
   const {setComponent } = useContext(AppContext);
