@@ -1,14 +1,41 @@
-import React from 'react';
-import FileUploader from './FileUploader';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import { useContext} from 'react'
+import { AppContext} from '../components/AppWrapper'
+
 
 const ProfileForm = () => {
+  const {userData,setUserData} = useContext(AppContext)
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    
+  axios
+      .post('http://localhost:5000/userdetails', userData )
+      .then((response) => {
+        console.log(response);
+        if(response.status===404){
+          console.log('error');
+        }
+      }
+
+      )}
+  const handleChange = e => {
+    const name = e.target.name;
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+
+    setUserData(prevUserData => ({
+      ...prevUserData,
+      [name]: value
+    }));
+  };
+  
   return (
     <section>
-      <form>
+      
         <p className=' font-poppins font-semibold'>Profile details</p>
         <section>
           <form
-            action=''
+            onSubmit={handleSubmit}
             className='grid grid-cols-1 md:grid-cols-2 gap-4'
           >
             <div className='flex flex-col'>
@@ -17,6 +44,8 @@ const ProfileForm = () => {
                 type='text'
                 id='name'
                 className='border-[1px] border-[#0FCE7E] focus:border-blue-800 focus:border-1 outline-none '
+                value={userData.name}
+                onChange={handleChange}
               />
             </div>
             <div className='flex flex-col'>
@@ -25,6 +54,9 @@ const ProfileForm = () => {
                 type='email'
                 id='email'
                 className='border-[1px] border-[#0FCE7E] focus:border-blue-800 focus:border-1 outline-none'
+                placeholder={userData.email}
+                value={userData.email}
+                onChange={handleChange}
               />
             </div>
             <div className='flex flex-col'>
@@ -33,6 +65,8 @@ const ProfileForm = () => {
                 type='phone'
                 id='phone'
                 className='border-[1px] border-[#0FCE7E] focus:border-blue-800 focus:border-1 outline-none'
+                value={userData.value}
+                onChange={handleChange}
               />
             </div>
             <div className='flex flex-col'>
@@ -41,6 +75,8 @@ const ProfileForm = () => {
                 type='text'
                 id='address'
                 className='border-[1px] border-[#0FCE7E] focus:border-blue-800 focus:border-1 outline-none'
+                value={userData.address}
+                onChange={handleChange}
               />
             </div>
             <div className='flex flex-col'>
@@ -104,7 +140,7 @@ const ProfileForm = () => {
                 </label>
               </div>
             </div>
-            <FileUploader/>
+            {/* <FileUploader/> */}
             <div className='flex flex-col'>
               <label className=' font-poppins font-semibold' htmlFor='training'>Completed training</label>
               <div className='grid gird-cols-1 md:grid-cols-2'>
@@ -174,14 +210,14 @@ const ProfileForm = () => {
                 </label>
               </div>
             </div>
-            <div className='flex justify-center items-center md:justify-end md:items-end'>
-            <button type="submit" className=" w-32 h-12 text-white bg-[#0FCE7E]  focus:ring-4 focus:outline-none focus:ring-[#0FCE7E] font-medium rounded-lg text-sm px-5 py-2.5 text-center font-anton justify-end items-end">Submit</button>
+            <div className='flex justify-center items-center md:justify-start md:items-end'>
+            <button type="submit" className=" w-32 h-12 text-white bg-[#0FCE7E]  focus:ring-4 focus:outline-none focus:ring-[#0FCE7E] font-medium rounded-lg text-sm px-5 py-2.5 text-center font-anton justify-start items-start">Submit</button>
             </div>
           </form>
           
           
         </section>
-      </form>
+      
     </section>
   );
 };

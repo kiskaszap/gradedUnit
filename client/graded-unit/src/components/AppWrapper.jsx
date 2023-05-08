@@ -17,18 +17,20 @@ const AppWrapper = ({children}) => {
   const [isLoggedIn,setIsLoggedIn]=useState(false)
   const [isAdmin,setIsAdmin]=useState(false)
   const [isUser,setIsUser]=useState(false)
+  const [userData,setUserData]=useState({})
 
   const logOut =()=>{
     setIsUser(false)
     setIsAdmin(false)
     setIsLoggedIn(false)
+    setUserData(null)
   }
  
 
 
  
   return (
-    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, isUser,setIsUser, logOut}}>
+    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, isUser,setIsUser, logOut, userData, setUserData}}>
      {children}
     </AppContext.Provider>
   )

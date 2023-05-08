@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
-  const {setIsAdmin, setIsUser, setIsLoggedIn } = useContext(AppContext)
+  const {setIsAdmin, setIsUser, setIsLoggedIn, setUserData } = useContext(AppContext)
     const [error, isError]=useState(false)
     const {
     register,
@@ -37,12 +37,15 @@ const Login = () => {
         if (response.data.admin === true && response.data.authenticated === true) {
   setIsAdmin(true);
   setIsLoggedIn(true)
+  
+  
 
   navigate('/admindashboard');
 } else if (response.data.authenticated === true) {
   setIsUser(true);
-  navigate('/dashboard');
   setIsLoggedIn(true)
+  setUserData(response.data.user)
+  navigate('/dashboard');
 } else {
   console.log('failed');
 }

@@ -15,6 +15,8 @@ app.get('/', (req, res) => {
 });
 app.post('/register', controller.createUser);
 app.post('/login', controller.loginUser);
+app.post('/dashboard', controller.dashboard);
+app.post('/userdetails', controller.userdetails);
 
 app.listen(5000, () => {
   console.log('Server is listening on port 5000');

@@ -85,7 +85,7 @@ const Home = () => {
           <div className='teamSectionPerson grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  h-auto  w-full gap-5'>
             
             {leaders.map((item)=>{
-              return <Leader key={item} name={item.name} pic={item.pic} picPosition={item.picPosition} role={item.role}/>
+              return <Leader key={item.name} name={item.name} pic={item.pic} picPosition={item.picPosition} role={item.role}/>
             })}
           </div>
         </section>

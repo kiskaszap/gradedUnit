@@ -3,7 +3,7 @@ import DashboardButton from '../components/DashboardButton'
 import Profile from '../components/Profile'
 import Calendar from '../components/Calendar'
 import Upload from '../components/Upload'
-import Messages from '../components/Messages'
+import Disclosure from '../components/Disclosure'
 import Users from '../components/Users'
 
 
@@ -15,6 +15,7 @@ import TestProfile from '../assets/testProfile.jpg'
 import {FaUser, FaUsers} from 'react-icons/fa'
 import {BiMessageSquareDots, BiUpload} from 'react-icons/bi'
 import {BsCalendar2DateFill} from 'react-icons/bs'
+import {HiDocumentCheck} from 'react-icons/hi2'
 
 
 
@@ -41,7 +42,7 @@ const AdminDashboard = () => {
       <div className='  mx-4 my-6'>
        <DashboardButton component={<Profile/>} icon={<FaUser/>} name={'Profile'}/>
        <DashboardButton component={<Calendar/>} icon={<BsCalendar2DateFill/>} name={'Calendar'}/>
-       <DashboardButton component={<Messages/>} icon={<BiMessageSquareDots/>} name={'Messages'}/>
+       <DashboardButton component={<Disclosure/>} icon={<HiDocumentCheck/>} name={'Disclosure'}/>
        <DashboardButton component={<Upload/>} icon={<BiUpload/>} name={'Upload'}/>
        <DashboardButton component={<Users/>} icon={<FaUsers/>} name={'Users'}/>
        </div>

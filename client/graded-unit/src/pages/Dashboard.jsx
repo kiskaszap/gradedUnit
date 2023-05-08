@@ -3,20 +3,26 @@ import DashboardButton from '../components/DashboardButton'
 import Profile from '../components/Profile'
 import Calendar from '../components/Calendar'
 import Upload from '../components/Upload'
-import Messages from '../components/Messages'
+
+import Disclosure from '../components/Disclosure'
 
 
 
-import { useContext } from 'react'
+import { useContext , useEffect, useState} from 'react'
 import { AppContext} from '../components/AppWrapper'
+import axios from 'axios'
 
 import TestProfile from '../assets/testProfile.jpg'
 import {FaUser} from 'react-icons/fa'
-import {BiMessageSquareDots, BiUpload} from 'react-icons/bi'
+import { BiUpload} from 'react-icons/bi'
 import {BsCalendar2DateFill} from 'react-icons/bs'
+import {HiDocumentCheck} from 'react-icons/hi2'
 
 const Dashboard = () => {
  const {component } = useContext(AppContext);
+ const {userData,setUserData } = useContext(AppContext)
+ 
+  console.log(userData);
 
   return (
     <div className=' grid  md:grid-cols-7 md:grid-rows-6'>
@@ -36,9 +42,9 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='  mx-4 my-6'>
-       <DashboardButton component={<Profile/>} icon={<FaUser/>} name={'Profile'}/>
+       <DashboardButton component={<Profile/>} icon={<FaUser/>} name={'Profile'} />
        <DashboardButton component={<Calendar/>} icon={<BsCalendar2DateFill/>} name={'Calendar'}/>
-       <DashboardButton component={<Messages/>} icon={<BiMessageSquareDots/>} name={'Messages'}/>
+       <DashboardButton component={<Disclosure/>} icon={<HiDocumentCheck/>} name={'Disclosure'}/>
        <DashboardButton component={<Upload/>} icon={<BiUpload/>} name={'Upload'}/>
        </div>
       

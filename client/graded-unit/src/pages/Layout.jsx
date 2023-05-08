@@ -6,8 +6,9 @@ import DropdownNav from '../components/DropdownNav';
 import { useContext } from 'react'
 import { AppContext} from '../components/AppWrapper'
 
+
 const Layout = () => {
-  const { dropdownOpen,toggleNav, isLoggedIn, logOut } = useContext(AppContext);
+  const { dropdownOpen,toggleNav, isLoggedIn, logOut, isAdmin } = useContext(AppContext);
   
   return (
     <>
@@ -50,6 +51,12 @@ const Layout = () => {
             </li>
           </div>
           <div className={` navDiv__3  gap-x-3 hidden md:flex`}>
+            <li className={`${isLoggedIn&&isAdmin ? 'flex': 'hidden'} border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]`}>
+              <Link to='/admindashboard'>Dashboard</Link>
+            </li>
+            <li className={`${isLoggedIn&&!isAdmin ? 'flex': 'hidden'} border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]`}>
+              <Link to='/dashboard'>Dashboard</Link>
+            </li>
             <li onClick={logOut} className={` flex  items-center gap-x-3`}>
              <FaRegUserCircle className=  {`${!isLoggedIn ? 'hidden': 'flex'} text-[#0FCE7E]  w-6 h-6`}/>
               <Link className= {`${!isLoggedIn ? 'hidden': 'flex'} border-b-2 border-transparent transition-all duration-1000 hover:border-[#0FCE7E]`} to='/'>Logout</Link>

@@ -11,7 +11,7 @@ const Users = () => {
       <div className=' grid grid-cols-1 md:grid-cols-2'>
        {leaders.map((leader)=>{
         return <>
-        <Leader pic={leader.pic} name={leader.name} role={leader.role}/>
+        <Leader key={leader.name} pic={leader.pic} name={leader.name} role={leader.role}/>
         </>
        })}
       </div>
