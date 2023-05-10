@@ -9,8 +9,11 @@ const sessionSecret = crypto.randomBytes(64).toString('hex');
 
 // Use body-parser middleware to parse request bodies
 app.use(cors());
+
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(bodyParser.json());
+
 app.use(
   session({
     secret: sessionSecret,

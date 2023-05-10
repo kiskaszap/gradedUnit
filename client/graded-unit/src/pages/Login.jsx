@@ -35,11 +35,10 @@ const Login = () => {
             isError(true)
         }
         if (response.data.admin === true && response.data.authenticated === true) {
+          console.log(response.data.admin, response.data.authenticated);  
   setIsAdmin(true);
   setIsLoggedIn(true)
-  
-  
-
+  setUserData(response.data.user)
   navigate('/admindashboard');
 } else if (response.data.authenticated === true) {
   setIsUser(true);

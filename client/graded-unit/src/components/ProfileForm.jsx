@@ -5,12 +5,23 @@ import { AppContext} from '../components/AppWrapper'
 
 
 const ProfileForm = () => {
+//   const defaultUserData = {
+//   name: "",
+//   email: "",
+//   phone: "",
+//   address: "",
+//   availability: "",
+//   completedTraining: [],
+// };
   const {userData,setUserData} = useContext(AppContext)
-  const handleSubmit=(e)=>{
+  console.log(userData);
+  
+  
+  const handleSubmit= async (e)=>{
     e.preventDefault()
     
   axios
-      .post('http://localhost:5000/userdetails', userData )
+      .post('http://localhost:5000/userdetails', userData , )
       .then((response) => {
         console.log(response);
         if(response.status===404){
@@ -19,15 +30,32 @@ const ProfileForm = () => {
       }
 
       )}
-  const handleChange = e => {
-    const name = e.target.name;
-    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+  const handleChange = async e => {
+  const name = e.target.name;
+  const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 
-    setUserData(prevUserData => ({
+  if (name === 'training') {
+    if (value && !userData.completedTraining.includes(e.target.value)) {
+      setUserData(prevUserData => ({
+        ...prevUserData,
+        completedTraining: [...prevUserData.completedTraining, e.target.value],
+      }));
+    } else {
+      setUserData(prevUserData => ({
+        ...prevUserData,
+        completedTraining: prevUserData.completedTraining.filter(
+          training => training !== e.target.value,
+        ),
+      }));
+    }
+  } else {
+    await setUserData(prevUserData => ({
       ...prevUserData,
-      [name]: value
+      [name]: value,
     }));
-  };
+  }
+};
+
   
   return (
     <section>
@@ -44,6 +72,7 @@ const ProfileForm = () => {
                 type='text'
                 id='name'
                 className='border-[1px] border-[#0FCE7E] focus:border-blue-800 focus:border-1 outline-none '
+                name='name'
                 value={userData.name}
                 onChange={handleChange}
               />
@@ -54,6 +83,7 @@ const ProfileForm = () => {
                 type='email'
                 id='email'
                 className='border-[1px] border-[#0FCE7E] focus:border-blue-800 focus:border-1 outline-none'
+                name='email'
                 placeholder={userData.email}
                 value={userData.email}
                 onChange={handleChange}
@@ -65,7 +95,8 @@ const ProfileForm = () => {
                 type='phone'
                 id='phone'
                 className='border-[1px] border-[#0FCE7E] focus:border-blue-800 focus:border-1 outline-none'
-                value={userData.value}
+                name='phone'
+                value={userData.phone}
                 onChange={handleChange}
               />
             </div>
@@ -75,6 +106,7 @@ const ProfileForm = () => {
                 type='text'
                 id='address'
                 className='border-[1px] border-[#0FCE7E] focus:border-blue-800 focus:border-1 outline-none'
+                name='address'
                 value={userData.address}
                 onChange={handleChange}
               />
@@ -84,57 +116,65 @@ const ProfileForm = () => {
               <div className='grid gird-cols-1 md:grid-cols-2'>
                 <label >
                   <input className=' mr-2'
-                    type='checkbox'
+                    type='radio'
                     name='availability'
                     value='1-day-a-week'
+                    onChange={handleChange}
                   />
                   One day a week
                 </label>
                 <label>
                   <input className=' mr-2'
-                    type='checkbox'
+                    type='radio'
                     name='availability'
                     value='2-days-a-week'
+                    onChange={handleChange}
                   />
                   Two days a week
                 </label>
                 <label>
                   <input className=' mr-2'
-                    type='checkbox'
+                    type='radio'
                     name='availability'
                     value='3-days-a-week'
+                    onChange={handleChange}
+
                   />
                   Three days a week
                 </label>
                 <label>
                   <input className=' mr-2'
-                    type='checkbox'
+                    type='radio'
                     name='availability'
                     value='4-days-a-week'
+                    onChange={handleChange}
                   />
                   Four days a week
                 </label>
                 <label>
                   <input className=' mr-2'
-                    type='checkbox'
+                    type='radio'
                     name='availability'
                     value='5-days-a-week'
+                    onChange={handleChange}
                   />
                   Five days a week
                 </label>
                 <label>
                   <input className=' mr-2'
-                    type='checkbox'
+                    type='radio'
                     name='availability'
                     value='only-weekend'
+                    onChange={handleChange}
                   />
                   Only weekend
                 </label>
                 <label>
                   <input className=' mr-2'
-                    type='checkbox'
+                    type='radio'
                     name='availability'
                     value='weekday-only-afternoon'
+                    onChange={handleChange}
                   />
                   Only afternoons
                 </label>
@@ -149,6 +189,7 @@ const ProfileForm = () => {
                     type='checkbox'
                     name='training'
                     value='personal-learning-plan'
+                    onChange={handleChange}
                   />
                   Personal Learning 
                 </label>
@@ -157,6 +198,7 @@ const ProfileForm = () => {
                     type='checkbox'
                     name='training'
                     value='essential-information'
+                    onChange={handleChange}
                   />
                   Essential Information
                 </label>
@@ -165,6 +207,7 @@ const ProfileForm = () => {
                     type='checkbox'
                     name='training'
                     value='Safety'
+                    onChange={handleChange}
                   />
                   Safety
                 </label>
@@ -173,6 +216,7 @@ const ProfileForm = () => {
                     type='checkbox'
                     name='training'
                     value='safeguarding'
+                    onChange={handleChange}
                   />
                   Safeguarding
                 </label>
@@ -181,6 +225,7 @@ const ProfileForm = () => {
                     type='checkbox'
                     name='training'
                     value='tools-for-the-role'
+                    onChange={handleChange}
                   />
                   Tools for the Role
                 </label>
@@ -189,6 +234,7 @@ const ProfileForm = () => {
                     type='checkbox'
                     name='training'
                     value='general-data-protection-regulations'
+                    onChange={handleChange}
                   />
                   GDPR
                 </label>
@@ -197,6 +243,7 @@ const ProfileForm = () => {
                     type='checkbox'
                     name='training'
                     value='trustee-introduction'
+                    onChange={handleChange}
                   />
                   Trustee Introduction
                 </label>
@@ -205,6 +252,7 @@ const ProfileForm = () => {
                     type='checkbox'
                     name='training'
                     value='none'
+                    onChange={handleChange}
                   />
                   None
                 </label>

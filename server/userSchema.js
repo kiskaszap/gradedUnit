@@ -19,14 +19,10 @@ const userSchema = new mongoose.Schema({
   address: {
     type: String,
   },
-  profilePicture: {
-    type: Buffer,
+
+  uploadedPictures: {
+    type: String,
   },
-  uploadedPictures: [
-    {
-      type: Buffer,
-    },
-  ],
   disclosure: [
     {
       type: Buffer,

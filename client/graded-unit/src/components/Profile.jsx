@@ -10,7 +10,7 @@ const Profile = () => {
   const {isAdmin } = useContext(AppContext)
 
   return (
-    <div className='my-6 w-full px-auto  flex flex-col justify-center items-center'>
+    <div className='my-6 w-full px-auto  flex flex-col justify-center items-center sm:justify-start sm:items-start'>
      <ImageUploader />
       {isAdmin?<AdminProfileForm/>:<ProfileForm/>}
     

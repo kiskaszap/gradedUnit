@@ -17,7 +17,15 @@ const AppWrapper = ({children}) => {
   const [isLoggedIn,setIsLoggedIn]=useState(false)
   const [isAdmin,setIsAdmin]=useState(false)
   const [isUser,setIsUser]=useState(false)
-  const [userData,setUserData]=useState({})
+  const [userData,setUserData]=useState({
+    name:'',
+    email:'',
+    phone:'',
+    address:'',
+    completedTraining:[],
+    availability:''
+
+  })
 
   const logOut =()=>{
     setIsUser(false)

@@ -13,7 +13,7 @@ import { AppContext} from '../components/AppWrapper'
 
 import TestProfile from '../assets/testProfile.jpg'
 import {FaUser, FaUsers} from 'react-icons/fa'
-import {BiMessageSquareDots, BiUpload} from 'react-icons/bi'
+import {BiUpload} from 'react-icons/bi'
 import {BsCalendar2DateFill} from 'react-icons/bs'
 import {HiDocumentCheck} from 'react-icons/hi2'
 
@@ -22,6 +22,7 @@ import {HiDocumentCheck} from 'react-icons/hi2'
 
 const AdminDashboard = () => {
  const {component } = useContext(AppContext);
+ const {userData} = useContext(AppContext)
   return (
     <div className=' grid  md:grid-cols-7 md:grid-rows-6'>
      <div className='   md:col-span-3  md:row-span-2 bg-[#C3C3C3] inline-flex  flex-col rounded-md my-5 m-10'>

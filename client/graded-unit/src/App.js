@@ -16,6 +16,7 @@ import Games from './pages/Games';
 import SingleGamePage from './pages/SingleGamePage';
 import AdminDashboard from './pages/AdminDashboard';
 import PrivateRoute from './components/PrivateRoute';
+import Admintest from './pages/Admintest';
 
 export default function App() {
   return (
@@ -28,6 +29,10 @@ export default function App() {
           <Route
             index
             element={<Home />}
+          />
+          <Route
+            path='admintest'
+            element={<Admintest />}
           />
           <Route
             path='about-us'

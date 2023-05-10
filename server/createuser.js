@@ -7,6 +7,7 @@ const userCreate = async (email, password) => {
     address: '',
     email: email,
     password: password,
+    profilePicture: '',
     uploadedPictures: [],
     completedTraining: [],
     availability: [],
