@@ -1,20 +1,40 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useContext} from 'react'
 import { AppContext} from '../components/AppWrapper'
 
 
 const ProfileForm = () => {
-//   const defaultUserData = {
-//   name: "",
-//   email: "",
-//   phone: "",
-//   address: "",
-//   availability: "",
-//   completedTraining: [],
-// };
-  const {userData,setUserData} = useContext(AppContext)
+
+  
+  const { userData, setUserData } = useContext(AppContext);
   console.log(userData);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Replace 'your-endpoint' and the user data with your actual endpoint and user data
+        const response = await axios.post('http://localhost:5000/fetchedDetails', {email:userData.email});
+
+        // The response should contain the image data
+        // You might need to adjust this line based on the actual structure of your response
+        // const imageUrl = response.data.image;
+        // console.log(response.data);
+        // setFetchedPicture(
+        //   `http://localhost:5000${response.data}`
+        // )
+        // console.log(fetchedPicture);
+        console.log(response);
+        
+
+        // setFetchedPicture(imageUrl);
+      } catch (err) {
+        console.error('Error:', err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   
   
   const handleSubmit= async (e)=>{
@@ -120,6 +140,8 @@ const ProfileForm = () => {
                     name='availability'
                     value='1-day-a-week'
                     onChange={handleChange}
+                    checked={userData.availability.includes('1-day-a-week')}
+                    
                   />
                   One day a week
                 </label>
@@ -129,6 +151,7 @@ const ProfileForm = () => {
                     name='availability'
                     value='2-days-a-week'
                     onChange={handleChange}
+                    checked={userData.availability.includes('2-days-a-week')}
                   />
                   Two days a week
                 </label>
@@ -138,6 +161,7 @@ const ProfileForm = () => {
                     name='availability'
                     value='3-days-a-week'
                     onChange={handleChange}
+                    checked={userData.availability.includes('3-days-a-week')}
 
                   />
                   Three days a week
@@ -148,6 +172,7 @@ const ProfileForm = () => {
                     name='availability'
                     value='4-days-a-week'
                     onChange={handleChange}
+                    checked={userData.availability.includes('4-days-a-week')}
                   />
                   Four days a week
                 </label>
@@ -157,6 +182,7 @@ const ProfileForm = () => {
                     name='availability'
                     value='5-days-a-week'
                     onChange={handleChange}
+                    checked={userData.availability.includes('5-days-a-week')}
                   />
                   Five days a week
                 </label>
@@ -166,6 +192,7 @@ const ProfileForm = () => {
                     name='availability'
                     value='only-weekend'
                     onChange={handleChange}
+                    checked={userData.availability.includes('only-weekend')}
                   />
                   Only weekend
                 </label>
@@ -175,6 +202,7 @@ const ProfileForm = () => {
                     name='availability'
                     value='weekday-only-afternoon'
                     onChange={handleChange}
+                    checked={userData.availability.includes('weekday-only-afternoon')}
                   />
                   Only afternoons
                 </label>
@@ -189,6 +217,7 @@ const ProfileForm = () => {
                     type='checkbox'
                     name='training'
                     value='personal-learning-plan'
+                     checked={userData.completedTraining.includes('personal-learning-plan')}
                     onChange={handleChange}
                   />
                   Personal Learning 
@@ -199,6 +228,7 @@ const ProfileForm = () => {
                     name='training'
                     value='essential-information'
                     onChange={handleChange}
+                     checked={userData.completedTraining.includes('essential-information')}
                   />
                   Essential Information
                 </label>
@@ -208,6 +238,8 @@ const ProfileForm = () => {
                     name='training'
                     value='Safety'
                     onChange={handleChange}
+                     checked={userData.completedTraining.includes('Safety')}
+                    
                   />
                   Safety
                 </label>
@@ -217,6 +249,7 @@ const ProfileForm = () => {
                     name='training'
                     value='safeguarding'
                     onChange={handleChange}
+                     checked={userData.completedTraining.includes('safeguarding')}
                   />
                   Safeguarding
                 </label>
@@ -226,6 +259,7 @@ const ProfileForm = () => {
                     name='training'
                     value='tools-for-the-role'
                     onChange={handleChange}
+                    checked={userData.completedTraining.includes('tools-for-the-role')}
                   />
                   Tools for the Role
                 </label>
@@ -235,6 +269,7 @@ const ProfileForm = () => {
                     name='training'
                     value='general-data-protection-regulations'
                     onChange={handleChange}
+                     checked={userData.completedTraining.includes('general-data-protection-regulations')}
                   />
                   GDPR
                 </label>
@@ -244,6 +279,7 @@ const ProfileForm = () => {
                     name='training'
                     value='trustee-introduction'
                     onChange={handleChange}
+                     checked={userData.completedTraining.includes('trustee-introduction')}
                   />
                   Trustee Introduction
                 </label>
@@ -253,6 +289,7 @@ const ProfileForm = () => {
                     name='training'
                     value='none'
                     onChange={handleChange}
+                     checked={userData.completedTraining.includes('none')}
                   />
                   None
                 </label>

@@ -22,5 +22,6 @@ app.use(
     cookie: { secure: true },
   })
 );
+app.use('/profilePics', express.static('profilePics'));
 
 module.exports = app;

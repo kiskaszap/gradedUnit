@@ -20,9 +20,6 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
 
-  uploadedPictures: {
-    type: String,
-  },
   disclosure: [
     {
       type: Buffer,
@@ -43,3 +40,6 @@ const userSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('User', userSchema);
+// const ProfilePicSchema = mongoose.model('ProfilePicSchema', imageSchema);
+
+// module.exports = ProfilePicSchema;

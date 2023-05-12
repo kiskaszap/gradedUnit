@@ -3,6 +3,7 @@ const userCreate = require('./createuser.js');
 const fs = require('fs');
 
 const ProfilePicSchema = require('./profilePicSchema.js');
+const DesclosureSchema = require('./disclosureSchema.js');
 
 const createUser = async (req, res) => {
   try {
@@ -69,23 +70,79 @@ const loginUser = async (req, res) => {
 const dashboard = async (req, res) => {};
 const userdetails = async (req, res) => {
   console.log(req.body);
-  res.status(201).json({ data: 'userdetails updated ' });
+
+  const { name, phone, address, email, completedTraining, availability } =
+    req.body;
+
+  const update = {
+    name,
+    phone,
+    address,
+    email,
+    completedTraining,
+    availability,
+  };
+
+  try {
+    const updatedUser = await User.findOneAndUpdate(
+      { email: req.body.email },
+      { $set: update },
+      { new: true }
+    );
+
+    console.log('Updated user:', updatedUser);
+    // Handle the updated document
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error('Error:', error);
+    // Handle any errors that occurred during the update
+    res.status(500).json({ error: 'An error occurred during the update' });
+  }
 };
+
 const uploadProfilePicture = async (req, res) => {
   try {
-    const useremail = req.query.email;
-    console.log(req.query);
-
-    const newProfilePicture = new ProfilePicSchema({
-      imagePath: req.query.path,
-      useremail: useremail,
-    });
-
-    const savedProfilePicture = await newProfilePicture.save();
-    res.json(savedProfilePicture);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Failed to upload profile picture' });
+  }
+};
+const uploadDisclosure = async (req, res) => {
+  try {
+    console.log('Dislosure endpoint is called');
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to upload disclosure' });
+  }
+};
+
+const fetchedData = async (req, res) => {
+  console.log(req.body, 'Fetched data');
+  try {
+    const data = await ProfilePicSchema.findOne({ useremail: req.body.email });
+    if (data) {
+      const { imagePath } = data;
+      console.log(imagePath);
+      let newPath = imagePath.slice(1);
+      res.status(200).json(newPath);
+    } else {
+      return;
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching data' });
+  }
+};
+const fetchedDetails = async (req, res) => {
+  console.log(req.body, 'Fetched details');
+  try {
+    const data = await User.findOne({ email: req.body.email });
+    if (data) {
+      res.status(200).json(data);
+    } else {
+      return;
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching data' });
   }
 };
 
@@ -95,4 +152,7 @@ module.exports = {
   dashboard,
   userdetails,
   uploadProfilePicture,
+  uploadDisclosure,
+  fetchedData,
+  fetchedDetails,
 };

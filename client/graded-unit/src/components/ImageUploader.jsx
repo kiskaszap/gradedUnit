@@ -1,14 +1,14 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { MdCloudUpload, MdDelete } from 'react-icons/md';
-import { AiFillFileImage, AiOutlineCloudUpload } from 'react-icons/ai';
+import { AiFillFileImage } from 'react-icons/ai';
 import { AppContext } from '../components/AppWrapper';
 import axios from 'axios';
 
 const ImageUploader = () => {
   const [image, setImage] = useState(null);
   const [fileName, setFileName] = useState('No selected file');
-  const { userData, setUserData } = useContext(AppContext);
-  const [profilePicture, setProfilePicture] = useState('');
+  const { userData, setUserData,profilePicture, setProfilePicture } = useContext(AppContext);
+ 
 
  
 

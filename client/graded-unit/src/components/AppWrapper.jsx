@@ -26,19 +26,23 @@ const AppWrapper = ({children}) => {
     availability:''
 
   })
+  const [profilePicture, setProfilePicture] = useState(null);
+  const[fetchedPicture,setFetchedPicture]=useState(null)
 
   const logOut =()=>{
     setIsUser(false)
     setIsAdmin(false)
     setIsLoggedIn(false)
     setUserData(null)
+    setProfilePicture(null)
+    setFetchedPicture(null)
   }
  
 
 
  
   return (
-    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, isUser,setIsUser, logOut, userData, setUserData}}>
+    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, isUser,setIsUser, logOut, userData, setUserData,profilePicture, setProfilePicture,fetchedPicture,setFetchedPicture}}>
      {children}
     </AppContext.Provider>
   )
