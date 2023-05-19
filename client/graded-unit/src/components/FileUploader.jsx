@@ -7,7 +7,7 @@ import axios from 'axios';
 const FileUploader = () => {
   const [file,setFile]= useState(null)
 const [disclosureName,setDisclosureName]= useState('No selected file')
-const { userData } = useContext(AppContext);
+const { userData, setIsUpdated } = useContext(AppContext);
 const handleSave = async () => {
   if (file) {
     const disclosureForm = new FormData();
@@ -21,6 +21,7 @@ const handleSave = async () => {
         },
       });
       console.log('File uploaded successfully:', uploadResponse.data);
+      setIsUpdated(prevState=>!prevState)
     } catch (error) {
       console.error('Failed to upload file:', error);
     }

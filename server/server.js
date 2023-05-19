@@ -10,7 +10,7 @@ const middlewares = require('./middlewares.js');
 const controller = require('./controllers.js');
 const { handleMultipleFields } = require('./localMiddlewares');
 const disclosurestorage = require('./multerDisclosure');
-const { uploadDisclosure, handleDisclosure } = require('./localMiddlewares');
+const { uploadGallery, handleDisclosure } = require('./localMiddlewares');
 
 //invoking middlewares
 app.use(middlewares);
@@ -31,6 +31,17 @@ app.post(
 app.post('/uploadDisclosure', handleDisclosure, controller.uploadDisclosure);
 app.post('/fetchedData', controller.fetchedData);
 app.post('/fetchedDetails', controller.fetchedDetails);
+app.post(
+  '/uploadGallery',
+  uploadGallery.array('images', 5),
+  controller.uploadGalleryController
+);
+app.post('/pendingPictures', controller.pendingPictures);
+app.post('/dislosureFetch', controller.disclosureFetch);
+app.post('/calendar', controller.calendar);
+app.put('/calendarEdit:id', controller.calendarEdit);
+app.delete('/calendarDelete', controller.calendarDelete);
+app.get('/calendarFetch', controller.calendarFetch);
 
 app.listen(5000, () => {
   console.log('Server is listening on port 5000');

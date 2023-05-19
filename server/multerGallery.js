@@ -1,37 +1,37 @@
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const DisclosureSchema = require('./disclosureSchema');
-let desti;
+const GallerySchema = require('./gallerySchema');
+let destin;
 
-const disclosurestorage = multer.diskStorage({
+const gallerystorage = multer.diskStorage({
   destination: (req, file, cb) => {
     console.log(req.query.email, 'This is in the disclosure config');
     const useremail = req.query.email;
     // const sanitizedEmail = useremail.replace(/[^a-z0-9]/gi, '_').toLowerCase();
-    desti = `./fileUploads/${useremail}`;
-    fs.mkdirSync(desti, { recursive: true });
-    console.log(desti);
+    destin = `./galleryUploads/${useremail}`;
+    fs.mkdirSync(destin, { recursive: true });
+    console.log(destin);
 
-    cb(null, desti);
+    cb(null, destin);
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
     const basename = path.basename(file.originalname, ext);
     const timestamp = Date.now();
     cb(null, `${basename}-${timestamp}${ext}`);
-    const disclosureSave = async () => {
-      console.log('Disclosure function is called');
-      const newDisclosure = new DisclosureSchema({
-        filePath: `${desti + '/' + basename + '-' + timestamp + ext}`,
+    const gallerySave = async () => {
+      console.log('Gallery function is called');
+      const newGallery = new GallerySchema({
+        filePath: `${destin + '/' + basename + '-' + timestamp + ext}`,
         useremail: req.query.email,
         status: 'pending',
       });
 
-      await newDisclosure.save();
+      await newGallery.save();
     };
-    disclosureSave();
+    gallerySave();
   },
 });
 
-module.exports = disclosurestorage;
+module.exports = gallerystorage;

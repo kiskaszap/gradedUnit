@@ -28,19 +28,12 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Replace 'your-endpoint' and the user data with your actual endpoint and user data
+        
         const response = await axios.post('http://localhost:5000/fetchedData', {email:userData.email});
 
-        // The response should contain the image data
-        // You might need to adjust this line based on the actual structure of your response
-        // const imageUrl = response.data.image;
-        console.log(response.data);
         setFetchedPicture(
           `http://localhost:5000${response.data}`
         )
-        console.log(fetchedPicture);
-        
-
         // setFetchedPicture(imageUrl);
       } catch (err) {
         console.error('Error:', err);

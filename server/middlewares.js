@@ -23,5 +23,7 @@ app.use(
   })
 );
 app.use('/profilePics', express.static('profilePics'));
+app.use('/fileUploads', express.static('fileUploads'));
+app.use('/galleryUploads', express.static('galleryUploads'));
 
 module.exports = app;

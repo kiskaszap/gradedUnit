@@ -28,6 +28,9 @@ const AppWrapper = ({children}) => {
   })
   const [profilePicture, setProfilePicture] = useState(null);
   const[fetchedPicture,setFetchedPicture]=useState(null)
+  const [selectedImages,setSelectedImages]= useState([])
+  const [isUpdated,setIsUpdated]=useState(false)
+  const [pendingPictures,setPendingPictures]=useState(null)
 
   const logOut =()=>{
     setIsUser(false)
@@ -36,13 +39,15 @@ const AppWrapper = ({children}) => {
     setUserData(null)
     setProfilePicture(null)
     setFetchedPicture(null)
+    setSelectedImages([])
+    
   }
  
 
 
  
   return (
-    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, isUser,setIsUser, logOut, userData, setUserData,profilePicture, setProfilePicture,fetchedPicture,setFetchedPicture}}>
+    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, isUser,setIsUser, logOut, userData, setUserData,profilePicture, setProfilePicture,fetchedPicture,setFetchedPicture, selectedImages,setSelectedImages, isUpdated,setIsUpdated, pendingPictures,setPendingPictures}}>
      {children}
     </AppContext.Provider>
   )

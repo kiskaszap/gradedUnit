@@ -1,14 +1,15 @@
 const User = require('./userSchema.js');
 const userCreate = require('./createuser.js');
+const eventCreate = require('./eventCreate.js');
 const fs = require('fs');
 
 const ProfilePicSchema = require('./profilePicSchema.js');
 const DesclosureSchema = require('./disclosureSchema.js');
+const GallerySchema = require('./gallerySchema.js');
+const CalendarSchema = require('./calendarSchema.js');
 
 const createUser = async (req, res) => {
   try {
-    console.log(req.body);
-
     // Get the user data from the request body
     const userData = req.body;
 
@@ -16,7 +17,6 @@ const createUser = async (req, res) => {
     const savedUser = await userCreate(userData.email, userData.password);
 
     res.status(201).send(savedUser);
-    console.log('user is saved');
   } catch (error) {
     console.error(error);
     res.status(500).send('Error creating user');
@@ -55,7 +55,6 @@ const loginUser = async (req, res) => {
         user: userData,
       });
     } else {
-      console.log(userData);
       // console.log('User found');
       res.status(200).json({
         authenticated: true,
@@ -69,8 +68,6 @@ const loginUser = async (req, res) => {
 };
 const dashboard = async (req, res) => {};
 const userdetails = async (req, res) => {
-  console.log(req.body);
-
   const { name, phone, address, email, completedTraining, availability } =
     req.body;
 
@@ -90,7 +87,6 @@ const userdetails = async (req, res) => {
       { new: true }
     );
 
-    console.log('Updated user:', updatedUser);
     // Handle the updated document
     res.status(200).json(updatedUser);
   } catch (error) {
@@ -109,7 +105,6 @@ const uploadProfilePicture = async (req, res) => {
 };
 const uploadDisclosure = async (req, res) => {
   try {
-    console.log('Dislosure endpoint is called');
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Failed to upload disclosure' });
@@ -122,7 +117,7 @@ const fetchedData = async (req, res) => {
     const data = await ProfilePicSchema.findOne({ useremail: req.body.email });
     if (data) {
       const { imagePath } = data;
-      console.log(imagePath);
+
       let newPath = imagePath.slice(1);
       res.status(200).json(newPath);
     } else {
@@ -133,7 +128,6 @@ const fetchedData = async (req, res) => {
   }
 };
 const fetchedDetails = async (req, res) => {
-  console.log(req.body, 'Fetched details');
   try {
     const data = await User.findOne({ email: req.body.email });
     if (data) {
@@ -141,6 +135,105 @@ const fetchedDetails = async (req, res) => {
     } else {
       return;
     }
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching data' });
+  }
+};
+const uploadGalleryController = async (req, res) => {
+  // Send a response back to the client
+  res.status(200).json({ message: 'Files uploaded successfully.' });
+};
+const pendingPictures = async (req, res) => {
+  console.log(req.body);
+  try {
+    const data = await GallerySchema.find({ useremail: req.body.email });
+    if (data) {
+      res.status(200).json(data);
+    } else {
+      return;
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching data' });
+  }
+};
+const disclosureFetch = async (req, res) => {
+  try {
+    const data = await DesclosureSchema.findOne({ useremail: req.body.email });
+    if (data) {
+      res.status(200).json({ data: 'Uploaded', status: data.status });
+    } else {
+      res.status(404).json({ data: 'Isn`t found' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching data' });
+  }
+};
+const calendar = async (req, res) => {
+  const calendarDataArray = req.body.updatedData;
+
+  try {
+    const responseData = [];
+
+    for (let calendarItemData of calendarDataArray) {
+      const existingItem = await CalendarSchema.findOne({
+        id: calendarItemData.id,
+      });
+
+      if (existingItem) {
+        const updatedItem = await CalendarSchema.findByIdAndUpdate(
+          existingItem._id,
+          calendarItemData,
+          { new: true }
+        );
+        responseData.push(updatedItem);
+      } else {
+        const newCalendarItem = new CalendarSchema(calendarItemData);
+        const savedItem = await newCalendarItem.save();
+        responseData.push(savedItem);
+      }
+    }
+
+    res.status(200).json(responseData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error handling calendar items');
+  }
+};
+const calendarEdit = async (req, res) => {
+  console.log('CalendarEdit endpoint is called');
+
+  try {
+    if (req.body) {
+      console.log(req.body, 'This is called in the calendarEdit');
+      res.status(200).json({ data: 'Calendar' });
+    } else {
+      res.status(404).json({ data: 'Isn`t found' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching data' });
+  }
+};
+const calendarDelete = async (req, res) => {
+  console.log('CalendarDelete endpoint is called');
+
+  try {
+    if (req.body) {
+      console.log(req.body, 'This is called in the calendar');
+      res.status(200).json({ data: 'Calendar' });
+    } else {
+      res.status(404).json({ data: 'Isn`t found' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching data' });
+  }
+};
+const calendarFetch = async (req, res) => {
+  console.log('CalendarFetch endpoint is called');
+  console.log(req.body);
+
+  try {
+    const calendarFetch = await CalendarSchema.find({});
+    res.send(calendarFetch);
   } catch (err) {
     res.status(500).json({ message: 'Error fetching data' });
   }
@@ -153,6 +246,13 @@ module.exports = {
   userdetails,
   uploadProfilePicture,
   uploadDisclosure,
+  uploadGalleryController,
   fetchedData,
   fetchedDetails,
+  pendingPictures,
+  disclosureFetch,
+  calendar,
+  calendarEdit,
+  calendarDelete,
+  calendarFetch,
 };

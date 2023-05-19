@@ -3,6 +3,7 @@
 const multer = require('multer');
 const storage = require('./multerConfig.js');
 const disclosurestorage = require('./multerDisclosure.js');
+const gallerystorage = require('./multerGallery.js');
 
 const parseFormData = multer().none();
 const uploadSingle = multer({ storage }).single('profilePicture');
@@ -19,6 +20,9 @@ const handleDisclosure = multer({
 //   storage: fileStorage,
 //   limits: { fileSize: 1024 * 1024 * 10 }, // Limit file size to 10MB
 // }).fields([{ name: 'disclosure', maxCount: 1 }, { name: 'email' }]);
+const uploadGallery = multer({
+  storage: gallerystorage,
+});
 
 module.exports = {
   parseFormData,
@@ -26,4 +30,5 @@ module.exports = {
   handleMultipleFields,
   handleDisclosure,
   uploadDisclosure,
+  uploadGallery,
 };
