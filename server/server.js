@@ -42,6 +42,8 @@ app.post('/calendar', controller.calendar);
 app.get('/calendarFetch', controller.calendarFetch);
 app.post('/fetchUsers', controller.fetchUsers);
 app.post('/downloadDisclosure', controller.downloadDisclosure);
+app.post('/approveUser', controller.approveUser);
+app.post('/removeUser', controller.removeUser);
 
 app.listen(5000, () => {
   console.log('Server is listening on port 5000');

@@ -1,16 +1,43 @@
 import React from 'react'
 import UserAvatar from '../assets/userAvatar.png'
 import {AiOutlineDownload, AiOutlineUserAdd, AiOutlineUserDelete} from 'react-icons/ai'
+import { useContext } from 'react'
+import { AppContext} from '../components/AppWrapper'
 
 
 import axios from 'axios'
 
+
 const UserCard = (props) => {
+  const { isStatusUpdated,setIsStatusUpdated } = useContext(AppContext);
+ const approveUser =async()=>{
+  try {
+
+        const response = await axios.post('http://localhost:5000/approveUser', {email:props.email});
+        console.log(response);
+        setIsStatusUpdated(!isStatusUpdated)
+      } catch (err) {
+        console.error('Error:', err);
+      }
+  
+
+ }
+ const removeUser =async()=>{
+  try {
+
+        const response = await axios.post('http://localhost:5000/removeUser', {email:props.email});
+        console.log(response);
+        setIsStatusUpdated(!isStatusUpdated)
+      } catch (err) {
+        console.error('Error:', err);
+      }
+  
+
+ }
  // const disclosure=props.disclosure
  const downloadDisclosure= async()=>{
   try {
-   
-        
+
         const response = await axios.post('http://localhost:5000/downloadDisclosure', {email:props.email});
         console.log(response);
         window.open(`http://localhost:5000/${response.data.data}`);
@@ -21,11 +48,11 @@ const UserCard = (props) => {
   
  
   return (
-    <div className=' flex-col my-5  md:flex bg-yellow-300 p-10 gap-6 rounded-lg relative'>
-     <div className=' w-10 h-10 rounded-full bg-white flex items-center justify-center absolute top-5 right-5 cursor-pointer'>
+    <div className={`flex-col my-5  md:flex ${props.color}  p-10 gap-6 rounded-lg relative`} >
+     <div onClick={approveUser} className=' w-10 h-10 rounded-full bg-white flex items-center justify-center absolute top-5 right-5 cursor-pointer'>
      <AiOutlineUserAdd className=' w-8 h-8 text-green-500'/>
      </div>
-     <div className='  w-10 h-10 rounded-full bg-white flex items-center justify-center absolute bottom-5 right-5 cursor-pointer'>
+     <div onClick={removeUser}  className='  w-10 h-10 rounded-full bg-white flex items-center justify-center absolute bottom-5 right-5 cursor-pointer'>
 
      <AiOutlineUserDelete className=' w-8 h-8 text-red-500'/>
      </div>

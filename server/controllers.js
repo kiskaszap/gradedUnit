@@ -249,6 +249,46 @@ const downloadDisclosure = async (req, res) => {
     res.status(500).json({ message: 'Error fetching data' });
   }
 };
+const approveUser = async (req, res) => {
+  console.log('approveUser endpoint called');
+  const { email } = req.body;
+  console.log(email);
+
+  try {
+    const userUpdate = await User.findOneAndUpdate(
+      { email }, // Filter to find the user by email
+      { status: 'approved' }, // Update the status to 'approved'
+      { new: true } // Set { new: true } to return the updated document instead of the original one
+    );
+
+    if (userUpdate) {
+      console.log('Status changed');
+      res.status(200).json({ message: 'User approved successfully' });
+    } else {
+      console.log('User not found');
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ message: 'Error approving user' });
+  }
+};
+
+const removeUser = async (req, res) => {
+  console.log('removeUser endpoint called');
+  // use req.query to access the email
+  const { email } = req.body;
+  try {
+    const userDelete = await User.findOneAndDelete({ email: email });
+    if (!userDelete) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    return res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.log(error);
+  }
+};
 module.exports = {
   createUser,
   loginUser,
@@ -265,4 +305,6 @@ module.exports = {
   calendar,
   calendarFetch,
   downloadDisclosure,
+  approveUser,
+  removeUser,
 };

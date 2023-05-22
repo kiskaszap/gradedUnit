@@ -31,6 +31,7 @@ const AppWrapper = ({children}) => {
   const [selectedImages,setSelectedImages]= useState([])
   const [isUpdated,setIsUpdated]=useState(false)
   const [pendingPictures,setPendingPictures]=useState(null)
+  const[isStatusUpdated,setIsStatusUpdated]=useState(false)
 
   const logOut =()=>{
     setIsUser(false)
@@ -47,7 +48,7 @@ const AppWrapper = ({children}) => {
 
  
   return (
-    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, isUser,setIsUser, logOut, userData, setUserData,profilePicture, setProfilePicture,fetchedPicture,setFetchedPicture, selectedImages,setSelectedImages, isUpdated,setIsUpdated, pendingPictures,setPendingPictures}}>
+    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, isUser,setIsUser, logOut, userData, setUserData,profilePicture, setProfilePicture,fetchedPicture,setFetchedPicture, selectedImages,setSelectedImages, isUpdated,setIsUpdated, pendingPictures,setPendingPictures, isStatusUpdated,setIsStatusUpdated}}>
      {children}
     </AppContext.Provider>
   )
