@@ -1,22 +1,35 @@
 import React from 'react'
 import UserAvatar from '../assets/userAvatar.png'
-import {AiOutlineDownload} from 'react-icons/ai'
+import {AiOutlineDownload, AiOutlineUserAdd, AiOutlineUserDelete} from 'react-icons/ai'
+
+
 import axios from 'axios'
 
 const UserCard = (props) => {
  // const disclosure=props.disclosure
- const downloadDisclosure = async () => {
+ const downloadDisclosure= async()=>{
   try {
-    // make a GET request and pass email as a query parameter
-    window.open(`http://localhost:5000/downloadDisclosure?email=${props.email}`);
-  } catch (err) {
-    console.error('Error:', err);
-  }
-}
+   
+        
+        const response = await axios.post('http://localhost:5000/downloadDisclosure', {email:props.email});
+        console.log(response);
+        window.open(`http://localhost:5000/${response.data.data}`);
+      } catch (err) {
+        console.error('Error:', err);
+      }
+     }
   
  
   return (
-    <div className=' flex my-5 bg-yellow-300 p-10 gap-6 rounded-lg   '>
+    <div className=' flex-col my-5  md:flex bg-yellow-300 p-10 gap-6 rounded-lg relative'>
+     <div className=' w-10 h-10 rounded-full bg-white flex items-center justify-center absolute top-5 right-5 cursor-pointer'>
+     <AiOutlineUserAdd className=' w-8 h-8 text-green-500'/>
+     </div>
+     <div className='  w-10 h-10 rounded-full bg-white flex items-center justify-center absolute bottom-5 right-5 cursor-pointer'>
+
+     <AiOutlineUserDelete className=' w-8 h-8 text-red-500'/>
+     </div>
+
      <div className=' flex items-center justify-center'>
      <img className='  h-36 w-36 rounded-full flex items-center ' src={props.profilePicture ?`http://localhost:5000${props.profilePicture}`:UserAvatar} alt={props.name} />
      </div>

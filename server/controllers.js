@@ -232,7 +232,7 @@ const fetchUsers = async (req, res) => {
 const downloadDisclosure = async (req, res) => {
   console.log('DownloadDisclosure endpoint called');
   // use req.query to access the email
-  const { email } = req.query;
+  const { email } = req.body;
   console.log(email);
   try {
     const data = await User.findOne({ email });
@@ -240,7 +240,8 @@ const downloadDisclosure = async (req, res) => {
     if (data) {
       console.log(data.disclosure);
       const newDisclosurePath = `${data.disclosure.slice(2)}`;
-      res.download(newDisclosurePath);
+      console.log(newDisclosurePath);
+      res.status(200).json({ data: newDisclosurePath });
     } else {
       return;
     }
