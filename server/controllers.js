@@ -17,6 +17,7 @@ const createUser = async (req, res) => {
     const savedUser = await userCreate(userData.email, userData.password);
 
     res.status(201).send(savedUser);
+    console.log('User created');
   } catch (error) {
     console.error(error);
     res.status(500).send('Error creating user');
@@ -202,45 +203,6 @@ const calendar = async (req, res) => {
   }
 };
 
-const calendarDelete = async (req, res) => {
-  const updatedData = req.body.updatedData;
-
-  try {
-    // Delete all items from the collection
-    await CalendarSchema.deleteMany({});
-
-    // Insert the items from the updatedData array
-    await CalendarSchema.insertMany(updatedData);
-
-    console.log('Successfully updated items in MongoDB');
-    res.status(200).json({ status: 'success' });
-  } catch (error) {
-    console.error('Failed to update items in MongoDB:', error);
-    res.status(500).json({ status: 'error', error: 'Failed to update items' });
-  }
-};
-
-// console.log('CalendarDelete endpoint is called');
-// console.log(req.body);
-
-// const calendarDataArray = req.body.updatedData;
-// console.log(calendarDataArray);
-
-// try {
-//   const responseData = [];
-
-//   for (let calendarItemData of calendarDataArray) {
-//     const existingItem = await CalendarSchema.findOneAndRemove({
-//       id: calendarItemData.id,
-//     });
-//   }
-
-//   res.status(200).json(responseData);
-// } catch (error) {
-//   console.error(error);
-//   res.status(500).send('Error handling calendar items');
-// }
-
 const calendarFetch = async (req, res) => {
   console.log('CalendarFetch endpoint is called');
   console.log(req.body);
@@ -252,7 +214,40 @@ const calendarFetch = async (req, res) => {
     res.status(500).json({ message: 'Error fetching data' });
   }
 };
+const fetchUsers = async (req, res) => {
+  console.log('Fetchusers endpoint called');
+  try {
+    const data = await User.find({});
 
+    if (data) {
+      console.log(data);
+      res.status(200).json(data);
+    } else {
+      return;
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching data' });
+  }
+};
+const downloadDisclosure = async (req, res) => {
+  console.log('DownloadDisclosure endpoint called');
+  // use req.query to access the email
+  const { email } = req.query;
+  console.log(email);
+  try {
+    const data = await User.findOne({ email });
+
+    if (data) {
+      console.log(data.disclosure);
+      const newDisclosurePath = `${data.disclosure.slice(2)}`;
+      res.download(newDisclosurePath);
+    } else {
+      return;
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching data' });
+  }
+};
 module.exports = {
   createUser,
   loginUser,
@@ -263,10 +258,10 @@ module.exports = {
   uploadGalleryController,
   fetchedData,
   fetchedDetails,
+  fetchUsers,
   pendingPictures,
   disclosureFetch,
   calendar,
-
-  calendarDelete,
   calendarFetch,
+  downloadDisclosure,
 };

@@ -2,6 +2,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const DisclosureSchema = require('./disclosureSchema');
+const User = require('./userSchema');
 let desti;
 
 const disclosurestorage = multer.diskStorage({
@@ -22,10 +23,12 @@ const disclosurestorage = multer.diskStorage({
     cb(null, `${basename}-${timestamp}${ext}`);
     const disclosureSave = async () => {
       console.log('Disclosure function is called');
-      const newDisclosure = new DisclosureSchema({
-        filePath: `${desti + '/' + basename + '-' + timestamp + ext}`,
-        useremail: req.query.email,
-        status: 'pending',
+      const filter = { email: req.query.email };
+      const update = {
+        disclosure: `${desti + '/' + basename + '-' + timestamp + ext}`,
+      };
+      const newDisclosure = await User.findOneAndUpdate(filter, update, {
+        new: true,
       });
 
       await newDisclosure.save();

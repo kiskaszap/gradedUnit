@@ -12,6 +12,7 @@ const userCreate = async (email, password) => {
     completedTraining: [],
     availability: '',
     status: 'pending',
+    disclosure: '',
   });
   await newUser.save();
 };
