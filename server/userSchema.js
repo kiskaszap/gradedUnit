@@ -19,24 +19,25 @@ const userSchema = new mongoose.Schema({
   address: {
     type: String,
   },
+  profilePicture: {
+    type: String,
+  },
 
-  disclosure: [
-    {
-      type: Buffer,
-    },
-  ],
+  disclosure: {
+    type: String,
+  },
+  status: {
+    type: String,
+  },
+
   completedTraining: [
     {
       type: String,
-      enum: ['0', '1', '2', '3', '4', '5', '6', '7', '8'],
     },
   ],
-  availability: [
-    {
-      type: String,
-      enum: ['0', '1', '2', '3', '4', '5', '6', '7'],
-    },
-  ],
+  availability: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model('User', userSchema);

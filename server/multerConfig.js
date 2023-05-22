@@ -4,6 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const ProfilePicSchema = require('./profilePicSchema');
+const User = require('./userSchema');
 let dest;
 
 const storage = multer.diskStorage({
@@ -22,9 +23,12 @@ const storage = multer.diskStorage({
     const timestamp = Date.now();
     cb(null, `${basename}-${timestamp}${ext}`);
     const userSave = async () => {
-      const newProfilePicture = new ProfilePicSchema({
-        imagePath: `${dest + '/' + basename + '-' + timestamp + ext}`,
-        useremail: req.query.email,
+      const filter = { email: req.query.email };
+      const update = {
+        profilePicture: `${dest + '/' + basename + '-' + timestamp + ext}`,
+      };
+      const newProfilePicture = await User.findOneAndUpdate(filter, update, {
+        new: true,
       });
 
       await newProfilePicture.save();

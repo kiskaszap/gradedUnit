@@ -112,13 +112,15 @@ const uploadDisclosure = async (req, res) => {
 };
 
 const fetchedData = async (req, res) => {
-  console.log(req.body, 'Fetched data');
+  // console.log(req.body, 'Fetched data');
   try {
-    const data = await ProfilePicSchema.findOne({ useremail: req.body.email });
+    const data = await User.findOne({ email: req.body.email });
     if (data) {
-      const { imagePath } = data;
+      console.log(data);
+      const { profilePicture } = data;
 
-      let newPath = imagePath.slice(1);
+      let newPath = profilePicture.slice(1);
+      console.log(newPath);
       res.status(200).json(newPath);
     } else {
       return;

@@ -10,7 +10,8 @@ const userCreate = async (email, password) => {
     profilePicture: '',
     uploadedPictures: [],
     completedTraining: [],
-    availability: [],
+    availability: '',
+    status: 'pending',
   });
   await newUser.save();
 };

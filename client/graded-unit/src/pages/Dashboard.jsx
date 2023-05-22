@@ -12,7 +12,7 @@ import { useContext } from 'react'
 import { AppContext} from '../components/AppWrapper'
 
 
-import TestProfile from '../assets/testProfile.jpg'
+
 import {FaUser} from 'react-icons/fa'
 import { BiUpload} from 'react-icons/bi'
 import {BsCalendar2DateFill} from 'react-icons/bs'
@@ -34,6 +34,7 @@ const Dashboard = () => {
         setFetchedPicture(
           `http://localhost:5000${response.data}`
         )
+        console.log(response.data, 'This is dahsboard');
         // setFetchedPicture(imageUrl);
       } catch (err) {
         console.error('Error:', err);
