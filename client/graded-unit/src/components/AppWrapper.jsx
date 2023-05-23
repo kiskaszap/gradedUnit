@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react';
 import { allBadges } from '../data/badges';
 import Profile from './Profile';
+import ProfileForm from './ProfileForm';
+import UserAvatar from '../assets/userAvatar.png'
 
 const AppContext = React.createContext();
 
@@ -27,11 +29,12 @@ const AppWrapper = ({children}) => {
 
   })
   const [profilePicture, setProfilePicture] = useState(null);
-  const[fetchedPicture,setFetchedPicture]=useState(null)
+  const[fetchedPicture,setFetchedPicture]=useState()
   const [selectedImages,setSelectedImages]= useState([])
   const [isUpdated,setIsUpdated]=useState(false)
   const [pendingPictures,setPendingPictures]=useState(null)
   const[isStatusUpdated,setIsStatusUpdated]=useState(false)
+  const[isStatusPending,setIsStatusPending]=useState(true)
 
   const logOut =()=>{
     setIsUser(false)
@@ -41,6 +44,9 @@ const AppWrapper = ({children}) => {
     setProfilePicture(null)
     setFetchedPicture(null)
     setSelectedImages([])
+    setComponent(null)
+    setIsStatusPending(true)
+    setSelectedImages([])
     
   }
  
@@ -48,7 +54,7 @@ const AppWrapper = ({children}) => {
 
  
   return (
-    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, isUser,setIsUser, logOut, userData, setUserData,profilePicture, setProfilePicture,fetchedPicture,setFetchedPicture, selectedImages,setSelectedImages, isUpdated,setIsUpdated, pendingPictures,setPendingPictures, isStatusUpdated,setIsStatusUpdated}}>
+    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, isUser,setIsUser, logOut, userData, setUserData,profilePicture, setProfilePicture,fetchedPicture,setFetchedPicture, selectedImages,setSelectedImages, isUpdated,setIsUpdated, pendingPictures,setPendingPictures, isStatusUpdated,setIsStatusUpdated, isStatusPending, setIsStatusPending}}>
      {children}
     </AppContext.Provider>
   )

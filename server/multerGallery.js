@@ -6,7 +6,8 @@ let destin;
 
 const gallerystorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    console.log(req.query.email, 'This is in the disclosure config');
+    console.log('Gallery multer is called');
+
     const useremail = req.query.email;
     // const sanitizedEmail = useremail.replace(/[^a-z0-9]/gi, '_').toLowerCase();
     destin = `./galleryUploads/${useremail}`;
@@ -16,6 +17,10 @@ const gallerystorage = multer.diskStorage({
     cb(null, destin);
   },
   filename: (req, file, cb) => {
+    console.log('multer gallery is called');
+    console.log(req.query, 'All gallery query');
+    console.log(req.query.username, 'Gallery name');
+
     const ext = path.extname(file.originalname);
     const basename = path.basename(file.originalname, ext);
     const timestamp = Date.now();
@@ -26,6 +31,7 @@ const gallerystorage = multer.diskStorage({
         filePath: `${destin + '/' + basename + '-' + timestamp + ext}`,
         useremail: req.query.email,
         status: 'pending',
+        username: req.query.username,
       });
 
       await newGallery.save();

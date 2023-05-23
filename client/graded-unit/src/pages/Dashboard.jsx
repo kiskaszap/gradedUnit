@@ -15,14 +15,15 @@ import { AppContext} from '../components/AppWrapper'
 
 import {FaUser} from 'react-icons/fa'
 import { BiUpload} from 'react-icons/bi'
-import {BsCalendar2DateFill} from 'react-icons/bs'
+import {BsCalendar2DateFill,BsFillCircleFill} from 'react-icons/bs'
 import {HiDocumentCheck} from 'react-icons/hi2'
 import axios from 'axios'
+import UserAvatar from '../assets/userAvatar.png'
 
 const Dashboard = () => {
  
  
- const { userData, setUserData,profilePicture, setProfilePicture,component, fetchedPicture,setFetchedPicture } = useContext(AppContext);
+ const { userData, profilePicture, component, fetchedPicture,setFetchedPicture, isStatusPending, setIsStatusPending } = useContext(AppContext);
  
  
   useEffect(() => {
@@ -30,12 +31,15 @@ const Dashboard = () => {
       try {
         
         const response = await axios.post('http://localhost:5000/fetchedData', {email:userData.email});
+        console.log(response);
 
         setFetchedPicture(
-          `http://localhost:5000${response.data}`
+          `http://localhost:5000${response.data.newPath}`
         )
-        console.log(response.data, 'This is dahsboard');
-        // setFetchedPicture(imageUrl);
+        if (response.data.status==='approved') {
+          
+          setIsStatusPending(false)
+        }
       } catch (err) {
         console.error('Error:', err);
       }
@@ -49,22 +53,25 @@ const Dashboard = () => {
 
       <div className=' flex p-9 justify-center items-center gap-3'>
        <div className='    '>
-        <img className='w-24 h-24 rounded-full justify-center items-center' src={profilePicture?profilePicture:fetchedPicture} alt="profilPic" />
+        <img className='w-24 h-24 rounded-full justify-center items-center' src={profilePicture?profilePicture:fetchedPicture} alt="X" />
        </div>
        <div>
         <h2 className=' font-poppins font-semibold'>
          {userData.name?userData.name:'User name'}
         </h2>
         <p className=' font-poppins '>
-         Registered helper
+         Status : {isStatusPending? <div className=' flex items-center justify-center gap-2'><BsFillCircleFill className=' text-yellow-500'/> <p>Pending Helper</p></div>:<div className=' flex items-center justify-center gap-2'><BsFillCircleFill className=' text-green-500 flex justify-center items-center'/> <p>Approved Helper</p></div>}
         </p>
         </div>
       </div>
       <div className='  mx-4 my-6'>
        <DashboardButton component={<Profile/>} icon={<FaUser/>} name={'Profile'} />
-       <DashboardButton component={<Calendar/>} icon={<BsCalendar2DateFill/>} name={'Calendar'}/>
+       {!isStatusPending ? (
+  <DashboardButton component={<Calendar />} icon={<BsCalendar2DateFill />} name={'Calendar'} />
+) : null}
+
        <DashboardButton component={<Disclosure/>} icon={<HiDocumentCheck/>} name={'Disclosure'}/>
-       <DashboardButton component={<Upload/>} icon={<BiUpload/>} name={'Upload'}/>
+       {!isStatusPending?(<DashboardButton component={<Upload/>} icon={<BiUpload/>} name={'Upload'}/>):null}
        </div>
       
      </div>

@@ -11,7 +11,7 @@ import Users from '../components/Users'
 import { useContext } from 'react'
 import { AppContext} from '../components/AppWrapper'
 
-import TestProfile from '../assets/testProfile.jpg'
+import UserAvatar from '../assets/userAvatar.png'
 import {FaUser, FaUsers} from 'react-icons/fa'
 import {BiUpload} from 'react-icons/bi'
 import {BsCalendar2DateFill} from 'react-icons/bs'
@@ -29,7 +29,7 @@ const AdminDashboard = () => {
 
       <div className=' flex p-9 justify-center items-center gap-3'>
        <div className='    '>
-        <img className='w-24 h-24 rounded-full justify-center items-center' src={TestProfile} alt="profilPic" />
+        <img className='w-24 h-24 rounded-full justify-center items-center' src={UserAvatar} alt="profilPic" />
        </div>
        <div>
         <h2 className=' font-poppins font-semibold'>

@@ -1,38 +1,98 @@
 
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext,useEffect } from 'react'
 import { MdCloudUpload, MdDelete } from 'react-icons/md'
 import { AiFillFileImage} from 'react-icons/ai'
 import axios from 'axios'
 import { AppContext } from '../components/AppWrapper';
-const GalleryUploader = () => {
+// const GalleryUploader = () => {
  
-const [fileName,setFileName]= useState('No selected file')
-const { userData, selectedImages,setSelectedImages,isUpdated, setIsUpdated } = useContext(AppContext);
- const handleSubmitGallery = async (event) => {
+//   const [fileName,setFileName]= useState('No selected images')
+//   const { userData, selectedImages,setSelectedImages,isUpdated, setIsUpdated } = useContext(AppContext);
+//    useEffect(() => {
+//     // Update the fileName whenever selectedImages changes
+//     if (selectedImages.length > 0) {
+//       setFileName(`${selectedImages.length} images selected`);
+//     } else {
+//       setFileName('No selected images');
+//     }
+//   }, [selectedImages]);
+//  const handleSubmitGallery = async (event) => {
+//     event.preventDefault();
+
+
+//     const formData = new FormData();
+//     selectedImages.forEach((file) => {
+//       formData.append('images', file);
+//       formData.append('email', userData.email);
+//       formData.append('username', userData.name)
+//     });
+
+//     try {
+//       await axios.post(`http://localhost:5000/uploadGallery?email=${userData.email}&username=${userData.name}`, formData, {
+//         headers: {
+//           'Content-Type': 'multipart/form-data',
+//         },
+//       });
+//       console.log('Files uploaded successfully');
+//       setIsUpdated(prevState => !prevState)
+//       setSelectedImages([])
+//       setFileName('No selected images')
+
+//     } catch (error) {
+//       console.error('Error uploading files:', error);
+//     }
+//   };
+//     const handleFileChange = (event) => {
+//       setSelectedImages([...event.target.files]);
+//       if(selectedImages.length>0){
+//         setFileName(
+//           `${selectedImages.length} images selected`
+//         )
+
+//       }
+    
+//   };
+const GalleryUploader = () => {
+  const [fileName, setFileName] = useState('No selected images');
+  const { userData, selectedImages, setSelectedImages, isUpdated, setIsUpdated } = useContext(AppContext);
+
+  useEffect(() => {
+    if (selectedImages.length > 0) {
+      setFileName(`${selectedImages.length} images selected`);
+    } else {
+      setFileName('No selected images');
+    }
+  }, [selectedImages]);
+
+  const handleSubmitGallery = async (event) => {
     event.preventDefault();
 
     const formData = new FormData();
+    // Use previous state selectedImages when appending to formData
     selectedImages.forEach((file) => {
       formData.append('images', file);
       formData.append('email', userData.email);
+      formData.append('username', userData.name);
     });
 
     try {
-      await axios.post(`http://localhost:5000/uploadGallery?email=${userData.email}`, formData, {
+      await axios.post(`http://localhost:5000/uploadGallery?email=${userData.email}&username=${userData.name}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
       console.log('Files uploaded successfully');
-      setIsUpdated(prevState => !prevState)
-
+      setIsUpdated((prevState) => !prevState);
+      setSelectedImages([]);
+      setFileName('No selected images');
     } catch (error) {
       console.error('Error uploading files:', error);
     }
   };
-    const handleFileChange = (event) => {
-    setSelectedImages([...event.target.files]);
-    
+
+  const handleFileChange = (event) => {
+    // Use the callback form of setSelectedImages to access previous state
+    setSelectedImages((prevState) => [...prevState, ...event.target.files]);
   };
   return (
     <section className=' w-full px-auto  flex flex-col justify-center items-center'>
@@ -52,7 +112,7 @@ const { userData, selectedImages,setSelectedImages,isUpdated, setIsUpdated } = u
         {fileName}
         <MdDelete className=' text-red-600 cursor-pointer' onClick={()=>{
          setFileName('No selected images')
-         setSelectedImages(null)
+         setSelectedImages([])
         }}/>
        </span>
        <button className=' bg-[#0FCE7E] text-white px-5 py-2 rounded-lg' onClick={handleSubmitGallery}>Upload</button>

@@ -113,16 +113,16 @@ const uploadDisclosure = async (req, res) => {
 };
 
 const fetchedData = async (req, res) => {
-  // console.log(req.body, 'Fetched data');
+  console.log('Fetched data endpoint is called');
   try {
     const data = await User.findOne({ email: req.body.email });
     if (data) {
       console.log(data);
-      const { profilePicture } = data;
+      const { profilePicture, status } = data;
 
       let newPath = profilePicture.slice(1);
       console.log(newPath);
-      res.status(200).json(newPath);
+      res.status(200).json({ newPath: newPath, status: status });
     } else {
       return;
     }
