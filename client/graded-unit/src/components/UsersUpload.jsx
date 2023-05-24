@@ -25,19 +25,14 @@ const UsersUpload = () => {
         <BsFillCircleFill className=' text-yellow-400' />
         Pending pictures
       </p>
-       {/* {userFetch && userFetch.filter(item => item.status === 'pending').map((item) => {
-        const newProfilePicture=item.profilePicture.slice(1)
-        const newDisclosure=item.disclosure.slice(1)
-        
-    return <UserCard key={item.name} color={'bg-yellow-300'} name={item.name} profilePicture={newProfilePicture} email={item.email} availability={item.availability} phone={item.phone} completedTraining={item.completedTraining} address={item.address} disclosure={newDisclosure}/>
-    
-})} */}
+      <div className=' flex '>
      {collectingPictures &&collectingPictures.filter(item=>item.status==='pending').map((item)=>{
       const {filePath,username,_id}=item
       const imagePath=filePath.slice(1)
       console.log(imagePath);
       return <UserPicture imagePath={imagePath} username={username} id={_id}/>
      })}
+     </div>
      <p className=' flex  items-center'>
         <BsFillCheckCircleFill className=' text-green-400' />
         Approved pictures
