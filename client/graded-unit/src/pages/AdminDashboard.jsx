@@ -5,6 +5,7 @@ import Calendar from '../components/Calendar'
 import Upload from '../components/Upload'
 import Disclosure from '../components/Disclosure'
 import Users from '../components/Users'
+import UsersUpload from '../components/UsersUpload'
 
 
 
@@ -16,6 +17,8 @@ import {FaUser, FaUsers} from 'react-icons/fa'
 import {BiUpload} from 'react-icons/bi'
 import {BsCalendar2DateFill} from 'react-icons/bs'
 import {HiDocumentCheck} from 'react-icons/hi2'
+import {AiOutlinePicture} from 'react-icons/ai'
+
 
 
 
@@ -46,6 +49,7 @@ const AdminDashboard = () => {
        <DashboardButton component={<Disclosure/>} icon={<HiDocumentCheck/>} name={'Disclosure'}/>
        <DashboardButton component={<Upload/>} icon={<BiUpload/>} name={'Upload'}/>
        <DashboardButton component={<Users/>} icon={<FaUsers/>} name={'Users'}/>
+       <DashboardButton component={<UsersUpload/>} icon={<AiOutlinePicture/>} name={'User`s uploads'}/>
        </div>
       
      </div>

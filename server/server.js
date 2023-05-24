@@ -44,6 +44,10 @@ app.post('/fetchUsers', controller.fetchUsers);
 app.post('/downloadDisclosure', controller.downloadDisclosure);
 app.post('/approveUser', controller.approveUser);
 app.post('/removeUser', controller.removeUser);
+app.post('/collectingPictures', controller.collectingPictures);
+app.post('/deleteUserPicture', controller.deleteUserPicture);
+app.post('/approveUserPicture', controller.approveUserPicture);
+//
 
 app.listen(5000, () => {
   console.log('Server is listening on port 5000');

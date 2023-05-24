@@ -289,6 +289,56 @@ const removeUser = async (req, res) => {
     console.log(error);
   }
 };
+const collectingPictures = async (req, res) => {
+  try {
+    const collectedPictures = await GallerySchema.find({});
+    if (!collectedPictures) {
+      return res.status(404).json({ message: 'Pictures not found' });
+    }
+
+    return res.status(200).json({ collectedPictures });
+  } catch (error) {
+    console.log(error);
+  }
+};
+const deleteUserPicture = async (req, res) => {
+  const { id } = req.body;
+  console.log(id);
+  try {
+    const deletePicture = await GallerySchema.findOneAndDelete({ _id: id });
+    if (!deletePicture) {
+      return res.status(404).json({ message: 'Pictures not found' });
+    }
+
+    return res.status(200).json({ data: 'deleted' });
+  } catch (error) {
+    console.log(error);
+  }
+};
+const approveUserPicture = async (req, res) => {
+  const { id } = req.body;
+  console.log(id);
+
+  const filter = { _id: id };
+  const update = {
+    status: 'approved',
+  };
+
+  try {
+    const updatePicture = await GallerySchema.findOneAndUpdate(filter, update, {
+      new: true,
+    });
+    if (!updatePicture) {
+      return res.status(404).json({ message: 'Pictures not found' });
+    }
+
+    return res.status(200).json({ data: 'approved' });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//
 module.exports = {
   createUser,
   loginUser,
@@ -307,4 +357,7 @@ module.exports = {
   downloadDisclosure,
   approveUser,
   removeUser,
+  collectingPictures,
+  deleteUserPicture,
+  approveUserPicture,
 };
