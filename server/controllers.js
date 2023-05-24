@@ -337,6 +337,18 @@ const approveUserPicture = async (req, res) => {
     console.log(error);
   }
 };
+const galleryCollect = async (req, res) => {
+  try {
+    const galleryCollect = await GallerySchema.find({ status: 'approved' });
+    if (!galleryCollect) {
+      return res.status(404).json({ message: 'Pictures not found' });
+    }
+
+    return res.status(200).json({ data: galleryCollect });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 //
 module.exports = {
@@ -360,4 +372,5 @@ module.exports = {
   collectingPictures,
   deleteUserPicture,
   approveUserPicture,
+  galleryCollect,
 };
