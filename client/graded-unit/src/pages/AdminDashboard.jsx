@@ -6,6 +6,7 @@ import Upload from '../components/Upload'
 import Disclosure from '../components/Disclosure'
 import Users from '../components/Users'
 import UsersUpload from '../components/UsersUpload'
+import CreateEvent from '../components/CreateEvent'
 
 
 
@@ -18,6 +19,7 @@ import {BiUpload} from 'react-icons/bi'
 import {BsCalendar2DateFill} from 'react-icons/bs'
 import {HiDocumentCheck} from 'react-icons/hi2'
 import {AiOutlinePicture} from 'react-icons/ai'
+import {MdOutlineEventBusy} from 'react-icons/md'
 
 
 
@@ -25,10 +27,10 @@ import {AiOutlinePicture} from 'react-icons/ai'
 
 const AdminDashboard = () => {
  const {component } = useContext(AppContext);
- const {userData} = useContext(AppContext)
+ 
   return (
     <div className=' grid  md:grid-cols-7 md:grid-rows-6'>
-     <div className='   md:col-span-3  md:row-span-2 bg-[#C3C3C3] inline-flex  flex-col rounded-md my-5 m-10'>
+     <div className='   md:col-span-3   bg-[#C3C3C3] inline-flex  flex-col rounded-md my-5 m-10'>
 
       <div className=' flex p-9 justify-center items-center gap-3'>
        <div className='    '>
@@ -45,11 +47,12 @@ const AdminDashboard = () => {
       </div>
       <div className='  mx-4 my-6'>
        <DashboardButton component={<Profile/>} icon={<FaUser/>} name={'Profile'}/>
-       <DashboardButton component={<Calendar/>} icon={<BsCalendar2DateFill/>} name={'Calendar'}/>
+       <DashboardButton component={<Calendar/>} icon={<BsCalendar2DateFill/>} name={'Training dates'}/>
        <DashboardButton component={<Disclosure/>} icon={<HiDocumentCheck/>} name={'Disclosure'}/>
        <DashboardButton component={<Upload/>} icon={<BiUpload/>} name={'Upload'}/>
        <DashboardButton component={<Users/>} icon={<FaUsers/>} name={'Users'}/>
        <DashboardButton component={<UsersUpload/>} icon={<AiOutlinePicture/>} name={'User`s uploads'}/>
+       <DashboardButton component={<CreateEvent/>} icon={<MdOutlineEventBusy/>} name={'Manage events'}/>
        </div>
       
      </div>

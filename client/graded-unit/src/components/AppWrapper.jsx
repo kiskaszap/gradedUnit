@@ -37,6 +37,7 @@ const AppWrapper = ({children}) => {
   const[isStatusPending,setIsStatusPending]=useState(true)
   const [collectingPictures,setCollectingPictures]=useState([])
   const [isUserPictureUpdated, setIsUserPictureUpdated]=useState(false)
+  const [isEventUpdated, setIsEventUpdated]=useState(false)
 
   const logOut =()=>{
     setIsUser(false)
@@ -56,7 +57,7 @@ const AppWrapper = ({children}) => {
 
  
   return (
-    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, isUser,setIsUser, logOut, userData, setUserData,profilePicture, setProfilePicture,fetchedPicture,setFetchedPicture, selectedImages,setSelectedImages, isUpdated,setIsUpdated, pendingPictures,setPendingPictures, isStatusUpdated,setIsStatusUpdated, isStatusPending, setIsStatusPending, collectingPictures,setCollectingPictures, isUserPictureUpdated, setIsUserPictureUpdated}}>
+    <AppContext.Provider value={{badges,setBadges,searchValue, setSearchValue, dropdownOpen,setDropdownOpen,toggleNav,component,setComponent, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, isUser,setIsUser, logOut, userData, setUserData,profilePicture, setProfilePicture,fetchedPicture,setFetchedPicture, selectedImages,setSelectedImages, isUpdated,setIsUpdated, pendingPictures,setPendingPictures, isStatusUpdated,setIsStatusUpdated, isStatusPending, setIsStatusPending, collectingPictures,setCollectingPictures, isUserPictureUpdated, setIsUserPictureUpdated, isEventUpdated, setIsEventUpdated}}>
      {children}
     </AppContext.Provider>
   )

@@ -5,10 +5,7 @@ import axios from 'axios'
 
 const GalleryCarousel = () => {
   const [gallery,setGallery]=useState([])
-  const [effect,setEffect]=useState('hidden')
-  const imageEffect=(event)=>{
-    console.log(event.target);
-  }
+
   useEffect(() => {
       // update the count value
       axios.post('http://localhost:5000/galleryCollect')

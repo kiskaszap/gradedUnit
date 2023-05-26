@@ -4,6 +4,7 @@ const multer = require('multer');
 const storage = require('./multerConfig.js');
 const disclosurestorage = require('./multerDisclosure.js');
 const gallerystorage = require('./multerGallery.js');
+const eventstorage = require('./multerEvent.js');
 
 const parseFormData = multer().none();
 const uploadSingle = multer({ storage }).single('profilePicture');
@@ -23,6 +24,9 @@ const handleDisclosure = multer({
 const uploadGallery = multer({
   storage: gallerystorage,
 });
+const uploadEvent = multer({
+  storage: eventstorage,
+});
 
 module.exports = {
   parseFormData,
@@ -31,4 +35,5 @@ module.exports = {
   handleDisclosure,
   uploadDisclosure,
   uploadGallery,
+  uploadEvent,
 };
