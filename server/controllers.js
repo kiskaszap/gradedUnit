@@ -1,20 +1,23 @@
 const User = require('./userSchema.js');
 const userCreate = require('./createuser.js');
-const eventCreate = require('./eventCreate.js');
-const fs = require('fs');
-
-const ProfilePicSchema = require('./profilePicSchema.js');
+const bcrypt = require('bcrypt');
 const DesclosureSchema = require('./disclosureSchema.js');
 const GallerySchema = require('./gallerySchema.js');
 const CalendarSchema = require('./calendarSchema.js');
+const EventSchema = require('./eventSchema.js');
 
 const createUser = async (req, res) => {
   try {
     // Get the user data from the request body
     const userData = req.body;
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds);
+
+    // Hash the user's password using the generated salt
+    const hashedPassword = await bcrypt.hash(userData.password, salt);
 
     // Create a new user using the User model
-    const savedUser = await userCreate(userData.email, userData.password);
+    const savedUser = await userCreate(userData.email, hashedPassword);
 
     res.status(201).send(savedUser);
     console.log('User created');
@@ -28,12 +31,23 @@ const loginUser = async (req, res) => {
     // Get the user data from the request body
     const userLog = req.body;
 
-    // Create a new user using the User model
-    const user = await User.findOne({
-      email: userLog.email,
-      password: userLog.password,
-    });
+    // Find the user by email
+    const user = await User.findOne({ email: userLog.email });
 
+    if (!user) {
+      // User not found
+      return res.status(404).send('User not found');
+    }
+
+    // Compare the provided password with the stored hashed password
+    const passwordMatch = await bcrypt.compare(userLog.password, user.password);
+
+    if (!passwordMatch) {
+      // Password does not match
+      return res.status(401).send('Invalid password');
+    }
+
+    // Create a user data object to send back in the response
     const userData = {
       name: user.name,
       phone: user.phone,
@@ -46,9 +60,11 @@ const loginUser = async (req, res) => {
       availability: user.availability,
       __v: user.__v,
     };
+
     req.session.user = userData;
-    if (user.email === 'admin@cubscout.com' && user.password === 'admin123') {
-      console.log('admin found');
+
+    if (user.email === 'admin@cubscout.com' && passwordMatch) {
+      console.log('Admin found');
 
       res.status(200).json({
         admin: true,
@@ -56,7 +72,7 @@ const loginUser = async (req, res) => {
         user: userData,
       });
     } else {
-      // console.log('User found');
+      console.log('User found');
       res.status(200).json({
         authenticated: true,
         user: userData,
@@ -64,7 +80,7 @@ const loginUser = async (req, res) => {
     }
   } catch (error) {
     console.error(error);
-    res.status(404).send('Error finding user');
+    res.status(500).send('Error finding user');
   }
 };
 const dashboard = async (req, res) => {};
@@ -349,6 +365,22 @@ const galleryCollect = async (req, res) => {
     console.log(error);
   }
 };
+const createEvent = async (req, res) => {
+  try {
+    res.status(201).json({ event: 'created' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error creating user');
+  }
+};
+const eventCollect = async (req, res) => {
+  try {
+    const eventCollect = await EventSchema.find({});
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error creating user');
+  }
+};
 
 //
 module.exports = {
@@ -373,4 +405,6 @@ module.exports = {
   deleteUserPicture,
   approveUserPicture,
   galleryCollect,
+  createEvent,
+  eventCollect,
 };
