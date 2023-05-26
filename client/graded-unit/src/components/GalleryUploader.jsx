@@ -4,54 +4,7 @@ import { MdCloudUpload, MdDelete } from 'react-icons/md'
 import { AiFillFileImage} from 'react-icons/ai'
 import axios from 'axios'
 import { AppContext } from '../components/AppWrapper';
-// const GalleryUploader = () => {
- 
-//   const [fileName,setFileName]= useState('No selected images')
-//   const { userData, selectedImages,setSelectedImages,isUpdated, setIsUpdated } = useContext(AppContext);
-//    useEffect(() => {
-//     // Update the fileName whenever selectedImages changes
-//     if (selectedImages.length > 0) {
-//       setFileName(`${selectedImages.length} images selected`);
-//     } else {
-//       setFileName('No selected images');
-//     }
-//   }, [selectedImages]);
-//  const handleSubmitGallery = async (event) => {
-//     event.preventDefault();
 
-
-//     const formData = new FormData();
-//     selectedImages.forEach((file) => {
-//       formData.append('images', file);
-//       formData.append('email', userData.email);
-//       formData.append('username', userData.name)
-//     });
-
-//     try {
-//       await axios.post(`http://localhost:5000/uploadGallery?email=${userData.email}&username=${userData.name}`, formData, {
-//         headers: {
-//           'Content-Type': 'multipart/form-data',
-//         },
-//       });
-//       console.log('Files uploaded successfully');
-//       setIsUpdated(prevState => !prevState)
-//       setSelectedImages([])
-//       setFileName('No selected images')
-
-//     } catch (error) {
-//       console.error('Error uploading files:', error);
-//     }
-//   };
-//     const handleFileChange = (event) => {
-//       setSelectedImages([...event.target.files]);
-//       if(selectedImages.length>0){
-//         setFileName(
-//           `${selectedImages.length} images selected`
-//         )
-
-//       }
-    
-//   };
 const GalleryUploader = () => {
   const [fileName, setFileName] = useState('No selected images');
   const { userData, selectedImages, setSelectedImages, isUpdated, setIsUpdated } = useContext(AppContext);

@@ -62,6 +62,7 @@ app.post(
 
   controller.eventCollect
 );
+app.post('/removeEvent', controller.removeEvent);
 
 app.listen(5000, () => {
   console.log('Server is listening on port 5000');

@@ -367,6 +367,7 @@ const galleryCollect = async (req, res) => {
 };
 const createEvent = async (req, res) => {
   try {
+    console.log('createEvent called');
     res.status(201).json({ event: 'created' });
   } catch (error) {
     console.error(error);
@@ -376,9 +377,26 @@ const createEvent = async (req, res) => {
 const eventCollect = async (req, res) => {
   try {
     const eventCollect = await EventSchema.find({});
+    res.status(200).json(eventCollect);
   } catch (error) {
     console.error(error);
     res.status(500).send('Error creating user');
+  }
+};
+const removeEvent = async (req, res) => {
+  console.log(req.body);
+  console.log('removeUser endpoint called');
+  // use req.query to access the email
+  const { _id } = req.body;
+  try {
+    const eventDelete = await EventSchema.findOneAndDelete({ _id: _id });
+    if (!eventDelete) {
+      return res.status(404).json({ message: 'Event not found' });
+    }
+
+    return res.json({ message: 'Event deleted successfully' });
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -407,4 +425,5 @@ module.exports = {
   galleryCollect,
   createEvent,
   eventCollect,
+  removeEvent,
 };
