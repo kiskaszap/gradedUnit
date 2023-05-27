@@ -5,6 +5,7 @@ import Calendar from '../components/Calendar'
 import Upload from '../components/Upload'
 
 import Disclosure from '../components/Disclosure'
+import OtherUsers from '../components/OtherUsers'
 
 
 
@@ -13,7 +14,7 @@ import { AppContext} from '../components/AppWrapper'
 
 
 
-import {FaUser} from 'react-icons/fa'
+import {FaUser, FaUsers} from 'react-icons/fa'
 import { BiUpload} from 'react-icons/bi'
 import {BsCalendar2DateFill,BsFillCircleFill} from 'react-icons/bs'
 import {HiDocumentCheck} from 'react-icons/hi2'
@@ -72,6 +73,9 @@ const Dashboard = () => {
 
        <DashboardButton component={<Disclosure/>} icon={<HiDocumentCheck/>} name={'Disclosure'}/>
        {!isStatusPending?(<DashboardButton component={<Upload/>} icon={<BiUpload/>} name={'Upload'}/>):null}
+       {!isStatusPending?(<DashboardButton component={<OtherUsers/>} icon={<FaUsers/>} name={'Users'} />):null}
+       
+       
        </div>
       
      </div>

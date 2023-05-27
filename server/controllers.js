@@ -399,6 +399,30 @@ const removeEvent = async (req, res) => {
     console.log(error);
   }
 };
+const otherUsers = async (req, res) => {
+  try {
+    const data = await User.find({ status: 'approved' });
+    if (data) {
+      const sendingData = data
+        .map((item) => {
+          if (item.email === 'admin@cubscout.com') {
+            return null; // Skip the admin data
+          }
+          const { email, name, phone, profilePicture, availability } = item;
+          return { email, name, phone, profilePicture, availability };
+        })
+        .filter((item) => item !== null); // Remove null values from the array
+
+      console.log(sendingData, 'Sending data');
+
+      res.status(200).json(sendingData);
+    } else {
+      return;
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching data' });
+  }
+};
 
 //
 module.exports = {
@@ -426,4 +450,5 @@ module.exports = {
   createEvent,
   eventCollect,
   removeEvent,
+  otherUsers,
 };
